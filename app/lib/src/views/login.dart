@@ -10,7 +10,6 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
-    get_factors("en");
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
