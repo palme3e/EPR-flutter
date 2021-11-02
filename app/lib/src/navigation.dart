@@ -22,7 +22,7 @@ class Navigation extends StatelessWidget {
               authService.status == Status.Login)
             MaterialPage(
               key: ValueKey<String>('public'),
-              child: Login(), //change later
+              child: MainScreen(), //change later
             ),
           if (authService.status == Status.Fail ||
               authService.status == Status.Login)
