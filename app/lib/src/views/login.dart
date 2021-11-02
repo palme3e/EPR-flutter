@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:provider/provider.dart';
-import '../networking/request.dart';
+import '../networking/requests.dart';
 
 import '../auth/auth_service.dart';
 
@@ -10,7 +10,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
-
+    get_factors("en");
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
