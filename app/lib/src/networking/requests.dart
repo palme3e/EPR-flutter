@@ -15,10 +15,22 @@ get_languages() async {
 get_factors(String country_code) async {
   final response = await http
       .get(endpoints.base + [endpoints.factors, country_code].join("/"));
+  if (response.statusCode != 200) {
+    print("Not successfull getting factors");
+    return;
+  }
   var jsonString = await response.body;
   Map<String, dynamic> json = jsonDecode(jsonString);
+  if (json["success"] == false) {
+    print("success = false");
+    return;
+  }
+  //TODO check that payload has content
+  print(json["payload"]["factors"]);
+
   //TODO: add errorhandeling, see https://github.com/Jethuestad/early-pregnancy-risk/blob/8bafae308e0b9909e24d576a7413f26f2406f5e2/client/src/EarlyPregnancyRisk/networking/Requests.js
-  return json;
+  return json["payload"]
+      ["factors"]; //Returns a list og all questions in dict form
 }
 
 get_translation(country_code) async {
