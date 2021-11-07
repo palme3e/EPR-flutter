@@ -1,4 +1,5 @@
 import 'package:app/src/auth/auth_service.dart';
+import 'package:app/src/networking/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,46 @@ class _MainScreenState extends State<MainScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+          children: [
+            //Text(get_translation("en"))
+            FutureBuilder<String>(
+              future: get_translation("en"),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<String> snapshot,
+              ){
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Visibility(
+                        visible: snapshot.hasData,
+                        child: Text(
+                          snapshot.data,
+                          style: const TextStyle(color: Colors.black, fontSize: 24),
+                        ),
+                      )
+                    ],
+                  );
+                } else if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    return const Text('Error');
+                  } else if (snapshot.hasData) {
+                    return Text(
+                      snapshot.data,
+                      style: const TextStyle(color: Colors.teal, fontSize: 36)
+                      );
+                  } else {
+                    return const Text('Empty data');
+                  }
+                } else {
+                  return Text('State: ${snapshot.connectionState}');
+                }
+              },
+            )
+          ],
         ),
       ),
     );
