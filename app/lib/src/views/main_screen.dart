@@ -32,51 +32,62 @@ class _MainScreenState extends State<MainScreen> {
               Text(authService.errorMessage),
             ],
           )),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: EdgeInsets.all(50),
+        child:(Align(
+          alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            //Text(get_translation("en"))
+            Flexible(
+              flex: 8,
+              fit: FlexFit.loose,
+              child:(
             FutureBuilder<String>(
-              future: get_translation("en"),
+              future: get_translation("en", 'front_page_paragraph_1'),
               builder: (
                 BuildContext context,
                 AsyncSnapshot<String> snapshot,
               ){
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      Visibility(
-                        visible: snapshot.hasData,
-                        child: Text(
-                          snapshot.data,
-                          style: const TextStyle(color: Colors.black, fontSize: 24),
-                        ),
-                      )
-                    ],
-                  );
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasError) {
-                    return const Text('Error');
-                  } else if (snapshot.hasData) {
-                    return Text(
-                      snapshot.data,
-                      style: const TextStyle(color: Colors.teal, fontSize: 36)
-                      );
-                  } else {
-                    return const Text('Empty data');
-                  }
-                } else {
-                  return Text('State: ${snapshot.connectionState}');
-                }
+                if (snapshot.hasData) {
+                  return Text(snapshot.data ?? "default filler",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    softWrap: true,);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                    }
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
               },
-            )
+            )))
+            ,
+            Spacer(flex: 1,),
+            Flexible(
+              flex: 8,
+              fit: FlexFit.loose,
+              child:(
+            FutureBuilder<String>(
+              future: get_translation("en", 'front_page_paragraph_2'),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<String> snapshot,
+              ){
+                if (snapshot.hasData) {
+                  return Text(snapshot.data ?? "default filler",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    softWrap: true,);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                    }
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+              },
+            )))
           ],
         ),
+      )
       ),
+    )
     );
   }
 }
