@@ -1,4 +1,5 @@
 import 'package:app/src/auth/auth_service.dart';
+import 'package:app/src/networking/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -31,11 +32,68 @@ class _MainScreenState extends State<MainScreen> {
               Text(authService.errorMessage),
             ],
           )),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+      body: Padding(
+        padding: EdgeInsets.all(50),
+        child:(Align(
+          alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Flexible(
+              flex: 8,
+              fit: FlexFit.loose,
+              child:(
+            FutureBuilder<String>(
+              future: get_translation("en", 'front_page_paragraph_1'),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<String> snapshot,
+              ){
+                if (snapshot.hasData) {
+                  return Text(snapshot.data ?? "default filler",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    softWrap: true,);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                    }
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+              },
+            )))
+            ,
+            Spacer(flex: 1,),
+            Flexible(
+              flex: 8,
+              fit: FlexFit.loose,
+              child:(
+            FutureBuilder<String>(
+              future: get_translation("en", 'front_page_paragraph_2'),
+              builder: (
+                BuildContext context,
+                AsyncSnapshot<String> snapshot,
+              ){
+                if (snapshot.hasData) {
+                  return Text(snapshot.data ?? "default filler",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                    softWrap: true,);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                    }
+                    // By default, show a loading spinner.
+                    return const CircularProgressIndicator();
+              },
+            )))
+          ],
         ),
+      )
+      ),
+    ),
+    floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: const Icon(Icons.play_arrow),
+        backgroundColor: Colors.blue,
       ),
     );
   }
