@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:app/src/views/main_screen.dart';
 import 'package:flutter/services.dart';
 import '../networking/requests.dart' as request;
 import 'package:app/src/auth/auth_service.dart';
@@ -40,45 +41,32 @@ class _MainScreenState extends State<Factors> {
     AuthService authService = context.watch<AuthService>();
     int index = 0;
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(75.0),
-          child: topBar(context, authService),
-        ),
-        body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            FutureBuilder<List>(
-              future: question_list,
-              builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-                if (snapshot.hasData) {
-                  List myMap = snapshot.data;
-                  print("før, ");
-                  print(index);
-                  return Text(myMap[index]["question"],
-                      style: TextStyle(fontSize: 25, color: color.darkblue));
-                } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
-                }
-                return const CircularProgressIndicator();
-              },
-            ),
-            Center(
-              child: Row(
-                children: [
-                  Spacer(),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        //padding: const EdgeInsets.all(16.0),
-                        primary: Colors.blue,
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: () {
-                        index = update_index(index);
-                        print("etter, ");
-                        print(index);
-                      },
-                      child: const Text('No')), //TODO change name
-
-                  TextButton(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(75.0),
+        child: topBar(context, authService),
+      ),
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          FutureBuilder<List>(
+            future: question_list,
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              if (snapshot.hasData) {
+                List myMap = snapshot.data;
+                print("før, ");
+                print(index);
+                return Text(myMap[index]["question"],
+                    style: TextStyle(fontSize: 25, color: color.darkblue));
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+          ),
+          Center(
+            child: Row(
+              children: [
+                Spacer(),
+                TextButton(
                     style: TextButton.styleFrom(
                       //padding: const EdgeInsets.all(16.0),
                       primary: Colors.blue,
@@ -89,13 +77,36 @@ class _MainScreenState extends State<Factors> {
                       print("etter, ");
                       print(index);
                     },
-                    child: const Text('Yes'), //TODO change name
+                    child: const Text('No')), //TODO change name
+
+                TextButton(
+                  style: TextButton.styleFrom(
+                    //padding: const EdgeInsets.all(16.0),
+                    primary: Colors.blue,
+                    textStyle: const TextStyle(fontSize: 20),
                   ),
-                  Spacer()
-                ],
-              ),
-            )
-          ]),
-        ));
+                  onPressed: () {
+                    index = update_index(index);
+                    print("etter, ");
+                    print(index);
+                  },
+                  child: const Text('Yes'), //TODO change name
+                ),
+                Spacer()
+              ],
+            ),
+          )
+        ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MainScreen()));
+        },
+        child: const Icon(Icons.play_arrow),
+        backgroundColor: Colors.blue,
+      ),
+    );
   }
 }
