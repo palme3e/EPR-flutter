@@ -10,12 +10,21 @@ AppBar topBar(BuildContext context, AuthService authService) =>
     leading:Image.asset('assets/images/EPR.png', fit: BoxFit.scaleDown),
     title: Text("Early Pregnancy Risk", style: TextStyle(fontSize: 24)),
     actions: [
-      GoogleSignInButton(
-        onPressed: () {
-          authService.signInWithGoogle();
-        },
-      ),
-      Text(authService.errorMessage),
+      if (authService.status == Status.Unauthenticated)
+        GoogleSignInButton(
+          onPressed: () {
+            authService.signInWithGoogle();
+          },
+        ),
+        Text(authService.errorMessage),
+
+         if (authService.status == Status.Authenticated)
+            MaterialButton(
+              child: Text("Sign out"),
+              onPressed: () async {
+                await authService.signOut();
+              },
+            )
     ],
   );
 
