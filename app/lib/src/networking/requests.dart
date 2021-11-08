@@ -30,14 +30,19 @@ Future<List<dynamic>> get_factors(String country_code) async {
   return result_formatted;
 }
 
-get_translation(country_code) async {
-  final response = await http.get(Uri.parse(
-      endpoints.base + [endpoints.translate, country_code].join("/")));
+Future<String> get_translation(country_code, text) async {
+  final response = await http
+      .get(endpoints.base + [endpoints.translate, country_code].join("/"));
+
 
   var jsonString = await response.body;
-  Map<String, dynamic> json = jsonDecode(jsonString);
+  Map<String, dynamic> json = await jsonDecode(jsonString);
+  
+  
   //TODO: add errorhandeling, see https://github.com/Jethuestad/early-pregnancy-risk/blob/8bafae308e0b9909e24d576a7413f26f2406f5e2/client/src/EarlyPregnancyRisk/networking/Requests.js
-  return null; //TODO add formatting when using
+
+  //print(json['payload']['translation']['front_page_paragraph_1']);
+  return json['payload']['translation'][text]; //TODO add formatting when using
 }
 
 get_references(factor_name, lang_code) async {
