@@ -84,14 +84,27 @@ class _MainScreenState extends State<MainScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      //floatingActionButton: FloatingActionButton(
+      //onPressed: () {
+      // Add your onPressed code here!
+      //Navigator.push(
+      //  context, MaterialPageRoute(builder: (context) => Factors()));
+      //},
+      //child: const Icon(Icons.play_arrow),
+      //backgroundColor: Colors.blue,
+      //),
+
+      floatingActionButton: TextButton(
+        style: TextButton.styleFrom(
+          //padding: const EdgeInsets.all(16.0),
+          primary: Colors.blue,
+          textStyle: const TextStyle(fontSize: 20),
+        ),
         onPressed: () {
-          // Add your onPressed code here!
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Factors()));
         },
-        child: const Icon(Icons.play_arrow),
-        backgroundColor: Colors.blue,
+        child: const Text('Start'),
       ),
     );
   }

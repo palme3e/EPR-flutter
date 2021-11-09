@@ -6,6 +6,7 @@ import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:provider/src/provider.dart';
 
 AppBar topBar(BuildContext context, AuthService authService) => AppBar(
+  
       leading: Image.asset('assets/images/EPR.png',
           fit: BoxFit.scaleDown),
       title: Text("Early Pregnancy Risk", style: TextStyle(fontSize: 24)),
