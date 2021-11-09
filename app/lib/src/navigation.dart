@@ -3,6 +3,7 @@ import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/login.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:app/src/views/factors.dart';
+import 'package:app/src/views/factors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
