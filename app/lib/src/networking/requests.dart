@@ -34,11 +34,9 @@ Future<String> get_translation(country_code, text) async {
   final response = await http
       .get(endpoints.base + [endpoints.translate, country_code].join("/"));
 
-
   var jsonString = await response.body;
   Map<String, dynamic> json = await jsonDecode(jsonString);
-  
-  
+
   //TODO: add errorhandeling, see https://github.com/Jethuestad/early-pregnancy-risk/blob/8bafae308e0b9909e24d576a7413f26f2406f5e2/client/src/EarlyPregnancyRisk/networking/Requests.js
 
   //print(json['payload']['translation']['front_page_paragraph_1']);
