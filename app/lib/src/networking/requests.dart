@@ -67,8 +67,18 @@ post_factors(factors) async {
   final response = await http.post(url,
       headers: {"Content-Type": "application/json"}, body: json_enc);
 
+  if (response.statusCode != 200) {
+    print("Not successfull getting factors");
+    return null;
+  }
   var jsonString = await response.body;
-  Map<String, dynamic> json = jsonDecode(jsonString);
+  var result = jsonDecode(jsonString);
+  if (result["success"] == false) {
+    print("success = false");
+    return null;
+  }
 
-  print(jsonString);
+  List<dynamic> result_formatted = result["payload"];
+  print(result_formatted);
+  return result_formatted;
 }

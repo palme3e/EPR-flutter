@@ -49,7 +49,7 @@ class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
 
-  getQuestions() async {
+  get_questions() async {
     List<dynamic> temp = await request.get_factors("en");
     setState(() {
       _questions = temp;
@@ -59,7 +59,7 @@ class _FactorsState extends State<Factors> {
   @override
   void initState() {
     super.initState();
-    getQuestions();
+    get_questions();
   }
 
   _next() {
@@ -134,7 +134,7 @@ class _FactorsState extends State<Factors> {
                     ),
                     onPressed: () {
                       (update_answer(_questions[_indexQuestion],
-                          50)); //TODO fix number and textfield
+                          9)); //TODO fix number and textfield
                       (_next());
                     },
                     child: (Text("Int"))))
