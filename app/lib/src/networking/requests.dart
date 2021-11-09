@@ -53,18 +53,22 @@ get_references(factor_name, lang_code) async {
 }
 
 post_factors(factors) async {
-  Map<String, dynamic> data = {
-    "method": "POST",
-    "headers": {
-      "Content-Type": "application/json",
-    },
-    "body":
-        factors, //TODO: enten må factors formateres her, eller der den brukes.
-  };
-  var json_enc = jsonEncode(data);
-  final response =
-      await http.post(endpoints.base + [endpoints.calculate, "en"].join("/"));
-  //TODO add data in post
+  // Map<String, dynamic> data = {
+  //   "method": "POST",
+  //   "headers": {
+  //     "Content-Type": "application/json",
+  //   },
+  //   "body":
+  //       factors, //TODO: enten må factors formateres her, eller der den brukes.
+  // };
+  var json_enc = jsonEncode(factors);
+  var url = endpoints.base + [endpoints.calculate, "en"].join("/");
+
+  final response = await http.post(url,
+      headers: {"Content-Type": "application/json"}, body: json_enc);
+
   var jsonString = await response.body;
   Map<String, dynamic> json = jsonDecode(jsonString);
+
+  print(jsonString);
 }

@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'dart:io';
 import 'package:app/src/views/main_screen.dart';
+import 'package:app/src/views/results.dart';
 import 'package:flutter/services.dart';
 import '../networking/requests.dart' as request;
 import 'package:app/src/auth/auth_service.dart';
@@ -34,6 +35,16 @@ check_factor_type(factor) {
   }
 }
 
+Map<String, dynamic> answers = {};
+update_answer(factor_name, result) {
+  String temp = factor_name["factor"];
+  answers[temp] = result;
+}
+
+get_answers() {
+  return answers;
+}
+
 class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
@@ -58,20 +69,20 @@ class _FactorsState extends State<Factors> {
         _indexQuestion++;
       } else {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainScreen()));
+            context, MaterialPageRoute(builder: (context) => Results()));
       }
     });
   }
 
-  Map<String, dynamic> answers = {};
-  update_answer(factor_name, result) {
-    String temp = factor_name["factor"];
-    answers[temp] = result;
-  }
+  // Map<String, dynamic> answers = {};
+  // update_answer(factor_name, result) {
+  //   String temp = factor_name["factor"];
+  //   answers[temp] = result;
+  // }
 
-  get_answers() {
-    return answers;
-  }
+  // get_answers() {
+  //   return answers;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +134,7 @@ class _FactorsState extends State<Factors> {
                     ),
                     onPressed: () {
                       (update_answer(_questions[_indexQuestion],
-                          0)); //TODO fix number and textfield
+                          50)); //TODO fix number and textfield
                       (_next());
                     },
                     child: (Text("Int"))))
