@@ -57,9 +57,20 @@ class _QuestionsState extends State<Questions> {
       if (_indexQuestion < lastIndex) {
         _indexQuestion++;
       } else {
-        // Is the last question
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainScreen()));
       }
     });
+  }
+
+  Map<String, dynamic> answers = {};
+  update_answer(factor_name, result) {
+    String temp = factor_name["factor"];
+    answers[temp] = result;
+  }
+
+  get_answers() {
+    return answers;
   }
 
   @override
@@ -75,44 +86,51 @@ class _QuestionsState extends State<Questions> {
         Text(
             _questions.length > 0
                 ? _questions[_indexQuestion]["question"]
-                : "Error",
+                : " ",
             style: TextStyle(fontSize: 25, color: color.darkblue)),
         Center(
-          child: (check_factor_type(_questions[_indexQuestion])) //bool = true
-              ? Row(children: [
-                  Spacer(),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        primary: Colors.blue,
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: (_next),
-                      child: (Text("No"))),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                        //padding: const EdgeInsets.all(16.0),
-                        primary: Colors.blue,
-                        textStyle: const TextStyle(fontSize: 20),
-                      ),
-                      onPressed: (_next),
-                      child: (Text("Yes"))),
-                  Spacer()
-                ])
-              : TextButton(
-                  style: TextButton.styleFrom(
-                    //padding: const EdgeInsets.all(16.0),
-                    primary: Colors.blue,
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: (_next),
-                  child: (Text("Int"))),
-        )
+            child: (check_factor_type(_questions[_indexQuestion])) //bool = true
+                ? Row(children: [
+                    Spacer(),
+                    TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.blue,
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () {
+                          (update_answer(_questions[_indexQuestion], false));
+                          (_next());
+                        },
+                        child: (Text("No"))),
+                    TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(16.0),
+                          primary: Colors.blue,
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: () {
+                          (update_answer(_questions[_indexQuestion], true));
+                          (_next());
+                        },
+                        child: (Text("Yes"))),
+                    Spacer()
+                  ])
+                : TextButton(
+                    style: TextButton.styleFrom(
+                      //padding: const EdgeInsets.all(16.0),
+                      primary: Colors.blue,
+                      textStyle: const TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      (update_answer(_questions[_indexQuestion],
+                          0)); //TODO fix number and textfield
+                      (_next());
+                    },
+                    child: (Text("Int"))))
       ])),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
+          (_next());
         },
         child: const Icon(Icons.play_arrow),
         backgroundColor: Colors.blue,
