@@ -3,6 +3,7 @@ import 'package:app/src/networking/constants/endpoints.dart';
 import 'package:app/src/networking/requests.dart';
 import 'package:app/src/views/app_bar.dart';
 import 'package:app/src/views/factors.dart';
+import 'package:app/src/views/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -19,10 +20,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75.0),
-        child: topBar(context, authService),
-      ),
+      appBar: topBar(context, authService),
+      
       body: Padding(
         padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
         child: Row(
@@ -50,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
                           return Text('${snapshot.error}');
                         }
                         // By default, show a loading spinner.
-                        return const CircularProgressIndicator();
+                        return Loading();
                       },
                     ))),
             Spacer(
@@ -78,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
                           return Text('${snapshot.error}');
                         }
                         // By default, show a loading spinner.
-                        return const CircularProgressIndicator();
+                        return Loading();
                       },
                     )))
           ],

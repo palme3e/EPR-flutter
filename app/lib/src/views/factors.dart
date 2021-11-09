@@ -77,10 +77,7 @@ class _FactorsState extends State<Factors> {
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(75.0),
-        child: topBar(context, authService),
-      ),
+      appBar: topBar(context, authService),
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text(
