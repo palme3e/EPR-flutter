@@ -14,18 +14,16 @@ class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
-//var map = map_get_translation("en");
-//_texts["button_skip"]
+
 class _MainScreenState extends State<MainScreen> {
   var _texts = new Map<String, String>() ;
 
   getTexts() async{
-    Map<String,String> temp = await map_get_translation("en");
+    Map<String,String> temp = await get_translation("en");
     setState(() {
       _texts = temp;
     });
   }
-
 
   @override
   void initState() {
