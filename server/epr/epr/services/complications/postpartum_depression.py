@@ -7,9 +7,7 @@ import math
 def ppd_risk(risk_score: int) -> dict:
     base_risk = 10
     percent = min(100, (base_risk * risk_score))
-    print(f" Percent: {percent}")
-    print(f"Risk score: {risk_score}")
-
+    
     severity = 0
     if 0 <= risk_score < 3:
         severity = 0
