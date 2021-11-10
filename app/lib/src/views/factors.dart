@@ -118,7 +118,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], false));
                           (_next());
                         },
-                        child: (Text("No"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_no"]
+                          : "Default no"),
+                          ),
                     TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.all(16.0),
@@ -129,7 +133,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], true));
                           (_next());
                         },
-                        child: (Text("Yes"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_yes"]
+                          : "Default yes"),
+                        ),
                     Spacer()
                   ])
                 : TextButton(
@@ -161,29 +169,3 @@ class _FactorsState extends State<Factors> {
     );
   }
 }
-
-
-/**
- * 
- * floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          (_next());
-        },
-        child: const Icon(Icons.play_arrow),
-        backgroundColor: Colors.blue,
-      )
- * 
- * floatingActionButton: TextButton(
-        style: TextButton.styleFrom(
-          //padding: const EdgeInsets.all(16.0),
-          primary: Colors.blue,
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          (_next());
-        },
-        child:Text(_texts.length > 0
-                ? _texts["button_skip"]
-                : "Default skip"),
-      )
- */
