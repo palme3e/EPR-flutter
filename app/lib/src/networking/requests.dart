@@ -53,14 +53,6 @@ get_references(factor_name, lang_code) async {
 }
 
 post_factors(factors) async {
-  // Map<String, dynamic> data = {
-  //   "method": "POST",
-  //   "headers": {
-  //     "Content-Type": "application/json",
-  //   },
-  //   "body":
-  //       factors, //TODO: enten må factors formateres her, eller der den brukes.
-  // };
   var json_enc = jsonEncode(factors);
   var url = endpoints.base + [endpoints.calculate, "en"].join("/");
 
@@ -79,6 +71,5 @@ post_factors(factors) async {
   }
 
   List<dynamic> result_formatted = result["payload"];
-  print(result_formatted);
   return result_formatted;
 }
