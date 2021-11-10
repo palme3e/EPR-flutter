@@ -6,7 +6,7 @@ Row result_component(Map complication) => Row(
             style: TextStyle(color: Colors.black, fontSize: 15)),
         Text("Serverity str" + complication["severity_str"].toString() + " ",
             style: TextStyle(color: Colors.black, fontSize: 15)),
-        Text("Risk str " + complication["risk_str"].toString() + " \n",
+        Text("Risk str " + complication["risk_str"].toString() + " ",
             style: TextStyle(color: Colors.black, fontSize: 15)),
         Text("Risk score " + complication["risk_score"].toString() + " ",
             style: TextStyle(color: Colors.black, fontSize: 15)),
