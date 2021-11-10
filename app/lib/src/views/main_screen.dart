@@ -16,6 +16,21 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  var _texts = new Map<String, String>() ;
+
+  getTexts() async{
+    Map<String,String> temp = await get_translation("en");
+    setState(() {
+      _texts = temp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getTexts();
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
@@ -32,26 +47,16 @@ class _MainScreenState extends State<MainScreen> {
                 fit: FlexFit.loose,
                 child: Align(
                     alignment: Alignment.topLeft,
-                    child: FutureBuilder<String>(
-                      future: get_translation("en", 'front_page_paragraph_1'),
-                      builder: (
-                        BuildContext context,
-                        AsyncSnapshot<String> snapshot,
-                      ) {
-                        if (snapshot.hasData) {
-                          return Text(
-                            snapshot.data,
-                            style: const TextStyle(
+                    child: Text(
+                      _texts.length > 0
+                ? _texts["front_page_paragraph_1"]
+                : " ",
+                style: const TextStyle(
                                 color: Colors.black, fontSize: 20),
                             softWrap: true,
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
-                        }
-                        // By default, show a loading spinner.
-                        return Loading();
-                      },
-                    ))),
+                    )
+                    )
+                    ),
             Spacer(
               flex: 1,
             ),
@@ -60,25 +65,13 @@ class _MainScreenState extends State<MainScreen> {
                 fit: FlexFit.loose,
                 child: Align(
                     alignment: Alignment.topLeft,
-                    child: FutureBuilder<String>(
-                      future: get_translation("en", 'front_page_paragraph_2'),
-                      builder: (
-                        BuildContext context,
-                        AsyncSnapshot<String> snapshot,
-                      ) {
-                        if (snapshot.hasData) {
-                          return Text(
-                            snapshot.data,
-                            style: const TextStyle(
+                    child: Text(
+                      _texts.length > 0
+                ? _texts["front_page_paragraph_2"]
+                : " ",
+                style: const TextStyle(
                                 color: Colors.black, fontSize: 20),
                             softWrap: true,
-                          );
-                        } else if (snapshot.hasError) {
-                          return Text('${snapshot.error}');
-                        }
-                        // By default, show a loading spinner.
-                        return Loading();
-                      },
                     )))
           ],
         ),
@@ -103,7 +96,9 @@ class _MainScreenState extends State<MainScreen> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Factors()));
         },
-        child: const Text('Start'),
+        child:Text(_texts.length > 0
+                ? _texts["button_start"]
+                : "Start"),
       ),
     );
   }

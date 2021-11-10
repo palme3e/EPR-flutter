@@ -48,6 +48,14 @@ get_answers() {
 class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
+  var _texts = new Map<String, String>() ;
+
+  getTexts() async{
+    Map<String,String> temp = await request.get_translation("en");
+    setState(() {
+      _texts = temp;
+    });
+  }
 
   get_questions() async {
     List<dynamic> temp = await request.get_factors("en");
@@ -60,6 +68,7 @@ class _FactorsState extends State<Factors> {
   void initState() {
     super.initState();
     get_questions();
+    getTexts();
   }
 
   _next() {
@@ -109,7 +118,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], false));
                           (_next());
                         },
-                        child: (Text("No"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_no"]
+                          : "Default no"),
+                          ),
                     TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.all(16.0),
@@ -120,7 +133,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], true));
                           (_next());
                         },
-                        child: (Text("Yes"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_yes"]
+                          : "Default yes"),
+                        ),
                     Spacer()
                   ])
                 : TextButton(
@@ -136,12 +153,18 @@ class _FactorsState extends State<Factors> {
                     },
                     child: (Text("Int"))))
       ])),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: TextButton(
+        style: TextButton.styleFrom(
+          //padding: const EdgeInsets.all(16.0),
+          primary: Colors.blue,
+          textStyle: const TextStyle(fontSize: 20),
+        ),
         onPressed: () {
           (_next());
         },
-        child: const Icon(Icons.play_arrow),
-        backgroundColor: Colors.blue,
+        child:Text(_texts.length > 0
+                ? _texts["button_skip"]
+                : "Default skip"),
       ),
     );
   }
