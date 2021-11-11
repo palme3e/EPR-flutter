@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:io';
+import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:app/src/views/results.dart';
 import 'package:flutter/services.dart';
@@ -100,13 +101,16 @@ class _FactorsState extends State<Factors> {
       appBar: topBar(context, authService),
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        
         Text(
             _questions.length > 0
                 ? _questions[_indexQuestion]["question"]
                 : " ",
-            style: TextStyle(fontSize: 25, color: color.darkblue)),
-        Center(
-            child: (check_factor_type(_questions[_indexQuestion])) //bool = true
+            style: TextStyle(fontSize: 25, color: color.darkblue))
+            ,
+        _questions.length > 0
+        ?Center(
+          child: (check_factor_type(_questions[_indexQuestion])) //bool = true
                 ? Row(children: [
                     Spacer(),
                     TextButton(
@@ -152,7 +156,9 @@ class _FactorsState extends State<Factors> {
                       (_next());
                     },
                     child: (Text("Int"))))
-      ])),
+      : Loading()])
+      
+      ),
       floatingActionButton: TextButton(
         style: TextButton.styleFrom(
           //padding: const EdgeInsets.all(16.0),
