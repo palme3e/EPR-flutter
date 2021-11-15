@@ -51,15 +51,19 @@ class _ResultsState extends State<Results> {
 
   save_results_firebase(result, AuthService) {
     var firebaseUser = FirebaseAuth.instance.currentUser;
+    if(firebaseUser == null){
+      print("Not logged in");
+      return null;
+    }
     final firestoreInstance = FirebaseFirestore.instance;
 
-print(result);
 String resultString = "result-" + DateTime.now().toString();
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
-        .set({resultString: result
-        }).then((_) {
+        .collection(resultString)
+        .doc(resultString)
+        .set({"results": result}).then((_) {
       print("success!");
     });
   }
@@ -104,11 +108,7 @@ String resultString = "result-" + DateTime.now().toString();
                     textStyle: const TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
-                    print("saveing");
-                    
                     save_results_firebase(_result, authService);
-                    
-                    print("done");
                   },
                   child: const Text('Save to my account'),
                 ),
