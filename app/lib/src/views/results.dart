@@ -57,12 +57,12 @@ class _ResultsState extends State<Results> {
     }
     final firestoreInstance = FirebaseFirestore.instance;
 
-String resultString = "result-" + DateTime.now().toString();
+    String resultID =  DateTime.now().toString();
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
-        .collection(resultString)
-        .doc(resultString)
+        .collection("result")
+        .doc(resultID)
         .set({"results": result}).then((_) {
       print("success!");
     });
