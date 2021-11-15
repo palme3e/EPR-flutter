@@ -7,6 +7,9 @@ import 'package:provider/provider.dart';
 import 'Style/colors.dart' as color;
 import 'package:app/src/views/app_bar.dart';
 import 'Components/result_showing.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Results extends StatefulWidget {
   @override
@@ -40,9 +43,28 @@ class _ResultsState extends State<Results> {
   var _result = [];
   get_result() async {
     var answers = result.get_answers();
-    List<dynamic> temp = await request.post_factors(answers);
+    List<dynamic> temp = await request.post_factors(test_ans);
     setState(() {
       _result = temp;
+    });
+  }
+
+  save_results_firebase(result, AuthService) {
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+    if(firebaseUser == null){
+      print("Not logged in");
+      return null;
+    }
+    final firestoreInstance = FirebaseFirestore.instance;
+
+    String resultID =  DateTime.now().toString();
+    firestoreInstance
+        .collection("data")
+        .doc(firebaseUser.uid)
+        .collection("result")
+        .doc(resultID)
+        .set({"results": result}).then((_) {
+      print("success!");
     });
   }
 
@@ -55,6 +77,8 @@ class _ResultsState extends State<Results> {
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+    final firestoreInstance = FirebaseFirestore.instance;
 
     return Scaffold(
         appBar: PreferredSize(
@@ -76,7 +100,19 @@ class _ResultsState extends State<Results> {
                 result_component(_result[8]),
                 result_component(_result[9]),
                 result_component(_result[10]),
-                result_component(_result[11])
+                result_component(_result[11]),
+
+                TextButton(
+                  style: TextButton.styleFrom(
+                    primary: Colors.blue,
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    save_results_firebase(_result, authService);
+                  },
+                  child: const Text('Save to my account'),
+                ),
+                Text("To see your results go to the My Results page")
               ])
             : Text(" ", style: TextStyle(color: Colors.black, fontSize: 20)));
   }
