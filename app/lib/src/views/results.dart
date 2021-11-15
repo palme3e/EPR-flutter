@@ -54,10 +54,11 @@ class _ResultsState extends State<Results> {
     final firestoreInstance = FirebaseFirestore.instance;
 
 print(result);
+String resultString = "result-" + DateTime.now().toString();
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
-        .set({"result": result
+        .set({resultString: result
         }).then((_) {
       print("success!");
     });
