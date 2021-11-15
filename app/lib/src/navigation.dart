@@ -18,14 +18,14 @@ class Navigation extends StatelessWidget {
           if (authService.status == Status.Authenticated)
             MaterialPage(
               key: ValueKey<String>('main'),
-              child: Results(),
+              child: MainScreen(),
             ),
           if (authService.status == Status.Unauthenticated ||
               authService.status == Status.Fail ||
               authService.status == Status.Login)
             MaterialPage(
               key: ValueKey<String>('public'),
-              child: Results(), //change later
+              child: MainScreen(), //change later
             ),
           if (authService.status == Status.Fail ||
               authService.status == Status.Login)
