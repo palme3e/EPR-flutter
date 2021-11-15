@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:io';
+import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:app/src/views/results.dart';
 import 'package:flutter/services.dart';
@@ -48,6 +49,14 @@ get_answers() {
 class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
+  var _texts = new Map<String, String>() ;
+
+  getTexts() async{
+    Map<String,String> temp = await request.get_translation("en");
+    setState(() {
+      _texts = temp;
+    });
+  }
 
   get_questions() async {
     List<dynamic> temp = await request.get_factors("en");
@@ -60,6 +69,7 @@ class _FactorsState extends State<Factors> {
   void initState() {
     super.initState();
     get_questions();
+    getTexts();
   }
 
   _next() {
@@ -91,13 +101,16 @@ class _FactorsState extends State<Factors> {
       appBar: topBar(context, authService),
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        
         Text(
             _questions.length > 0
                 ? _questions[_indexQuestion]["question"]
                 : " ",
-            style: TextStyle(fontSize: 25, color: color.darkblue)),
-        Center(
-            child: (check_factor_type(_questions[_indexQuestion])) //bool = true
+            style: TextStyle(fontSize: 25, color: color.darkblue))
+            ,
+        _questions.length > 0
+        ?Center(
+          child: (check_factor_type(_questions[_indexQuestion])) //bool = true
                 ? Row(children: [
                     Spacer(),
                     TextButton(
@@ -109,7 +122,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], false));
                           (_next());
                         },
-                        child: (Text("No"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_no"]
+                          : "Default no"),
+                          ),
                     TextButton(
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.all(16.0),
@@ -120,7 +137,11 @@ class _FactorsState extends State<Factors> {
                           (update_answer(_questions[_indexQuestion], true));
                           (_next());
                         },
-                        child: (Text("Yes"))),
+                        child: Text(
+                          _texts.length > 0
+                          ? _texts["button_yes"]
+                          : "Default yes"),
+                        ),
                     Spacer()
                   ])
                 : TextButton(
@@ -135,13 +156,21 @@ class _FactorsState extends State<Factors> {
                       (_next());
                     },
                     child: (Text("Int"))))
-      ])),
-      floatingActionButton: FloatingActionButton(
+      : Loading()])
+      
+      ),
+      floatingActionButton: TextButton(
+        style: TextButton.styleFrom(
+          //padding: const EdgeInsets.all(16.0),
+          primary: Colors.blue,
+          textStyle: const TextStyle(fontSize: 20),
+        ),
         onPressed: () {
           (_next());
         },
-        child: const Icon(Icons.play_arrow),
-        backgroundColor: Colors.blue,
+        child:Text(_texts.length > 0
+                ? _texts["button_skip"]
+                : "Default skip"),
       ),
     );
   }

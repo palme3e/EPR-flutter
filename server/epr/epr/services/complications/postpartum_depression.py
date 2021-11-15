@@ -7,7 +7,7 @@ import math
 def ppd_risk(risk_score: int) -> dict:
     base_risk = 10
     percent = min(100, (base_risk * risk_score))
-
+    
     severity = 0
     if 0 <= risk_score < 3:
         severity = 0
@@ -15,7 +15,7 @@ def ppd_risk(risk_score: int) -> dict:
         severity = 1
     elif 6 <= risk_score <= 9:
         severity = 2
-    elif risk_score >= 10:
+    elif risk_score <= 10:
         severity = 3
     else:
         raise InternalServerError(
