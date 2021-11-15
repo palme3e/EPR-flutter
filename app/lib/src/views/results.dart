@@ -43,7 +43,7 @@ class _ResultsState extends State<Results> {
   var _result = [];
   get_result() async {
     var answers = result.get_answers();
-    List<dynamic> temp = await request.post_factors(test_ans);
+    List<dynamic> temp = await request.post_factors(answers);
     setState(() {
       _result = temp;
     });
@@ -51,19 +51,19 @@ class _ResultsState extends State<Results> {
 
   save_results_firebase(result, AuthService) {
     var firebaseUser = FirebaseAuth.instance.currentUser;
-    if(firebaseUser == null){
+    if (firebaseUser == null) {
       print("Not logged in");
       return null;
     }
     final firestoreInstance = FirebaseFirestore.instance;
 
-    String resultID =  DateTime.now().toString();
+    String resultID = DateTime.now().toString();
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
         .collection("result")
         .doc(resultID)
-        .set({"results": result}).then((_) {
+        .set({resultID: result}).then((_) {
       print("success!");
     });
   }
