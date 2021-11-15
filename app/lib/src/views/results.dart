@@ -53,10 +53,12 @@ class _ResultsState extends State<Results> {
     var firebaseUser = FirebaseAuth.instance.currentUser;
     final firestoreInstance = FirebaseFirestore.instance;
 
+print(result);
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
-        .set({"text": "123"}).then((_) {
+        .set({"result": result
+        }).then((_) {
       print("success!");
     });
   }
@@ -70,6 +72,8 @@ class _ResultsState extends State<Results> {
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+    final firestoreInstance = FirebaseFirestore.instance;
 
     return Scaffold(
         appBar: PreferredSize(
@@ -100,7 +104,9 @@ class _ResultsState extends State<Results> {
                   ),
                   onPressed: () {
                     print("saveing");
+                    
                     save_results_firebase(_result, authService);
+                    
                     print("done");
                   },
                   child: const Text('Save to my account'),
