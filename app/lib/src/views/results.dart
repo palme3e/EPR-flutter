@@ -16,6 +16,14 @@ class Results extends StatefulWidget {
   _ResultsState createState() => _ResultsState();
 }
 
+class Item {
+  Item({this.expandedValue, this.expandedHeader, this.active = false});
+
+  String expandedValue;
+  String expandedHeader;
+  bool active;
+}
+
 Map<String, dynamic> test_ans = {
   "activity_stairs": false,
   "activity_vigorous": true,
@@ -68,24 +76,40 @@ class _ResultsState extends State<Results> {
     });
   }
 
+  List<Item> generate_items(List<Map> complication) {
+    var item_list = [];
+    for (Map comp in complication) {
+      item_list.add(Item(
+          expandedHeader: comp["complication"].toString() +
+              " " +
+              comp["severity_str"].toString(),
+          expandedValue: "Your risk of getting this complication is " +
+              comp["risk_percent"].toString() +
+              "%"));
+    }
+    return item_list;
+  }
+
+  List<bool> active = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+
   @override
   void initState() {
     super.initState();
     get_result();
   }
-
-  bool active = false;
-  bool active1 = false;
-  bool active2 = false;
-  bool active3 = false;
-  bool active4 = false;
-  bool active5 = false;
-  bool active6 = false;
-  bool active7 = false;
-  bool active8 = false;
-  bool active9 = false;
-  bool active10 = false;
-  bool active11 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +125,44 @@ class _ResultsState extends State<Results> {
             ? Column(children: [
                 Text("Results",
                     style: TextStyle(color: Colors.black, fontSize: 30)),
-                generate_item(_result),
+                for (var i = 0; i < _result.length; i++)
+                  ExpansionPanelList(
+                      expansionCallback: (panelIndex, isExpanded) {
+                        active[i] = !active[i];
+                        setState(() {});
+                      },
+                      children: <ExpansionPanel>[
+                        ExpansionPanel(
+                            headerBuilder: (context, isExpanded) {
+                              return Text(
+                                _result[i]["complication"].toString() +
+                                    "       " +
+                                    _result[i]["severity_str"].toString(),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                              );
+                            },
+                            body: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              spacing: 7,
+                              children: [
+                                Text(
+                                  "Your risk of getting this complication is " +
+                                      _result[i]["risk_percent"].toString() +
+                                      "%",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16),
+                                ),
+                                Text(
+                                  "Click here read more about this.",
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16),
+                                )
+                              ],
+                            ),
+                            isExpanded: active[i],
+                            canTapOnHeader: true)
+                      ]),
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.blue,
