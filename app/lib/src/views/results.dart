@@ -51,13 +51,13 @@ class _ResultsState extends State<Results> {
 
   save_results_firebase(result, AuthService) {
     var firebaseUser = FirebaseAuth.instance.currentUser;
-    if(firebaseUser == null){
+    if (firebaseUser == null) {
       print("Not logged in");
       return null;
     }
     final firestoreInstance = FirebaseFirestore.instance;
 
-    String resultID =  DateTime.now().toString();
+    String resultID = DateTime.now().toString();
     firestoreInstance
         .collection("data")
         .doc(firebaseUser.uid)
@@ -74,6 +74,19 @@ class _ResultsState extends State<Results> {
     get_result();
   }
 
+  bool active = false;
+  bool active1 = false;
+  bool active2 = false;
+  bool active3 = false;
+  bool active4 = false;
+  bool active5 = false;
+  bool active6 = false;
+  bool active7 = false;
+  bool active8 = false;
+  bool active9 = false;
+  bool active10 = false;
+  bool active11 = false;
+
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
@@ -88,20 +101,7 @@ class _ResultsState extends State<Results> {
             ? Column(children: [
                 Text("Results",
                     style: TextStyle(color: Colors.black, fontSize: 30)),
-                //Should probably do a for loop
-                result_component(_result[0]),
-                result_component(_result[1]),
-                result_component(_result[2]),
-                result_component(_result[3]),
-                result_component(_result[4]),
-                result_component(_result[5]),
-                result_component(_result[6]),
-                result_component(_result[7]),
-                result_component(_result[8]),
-                result_component(_result[9]),
-                result_component(_result[10]),
-                result_component(_result[11]),
-
+                generate_item(_result),
                 TextButton(
                   style: TextButton.styleFrom(
                     primary: Colors.blue,
@@ -117,3 +117,44 @@ class _ResultsState extends State<Results> {
             : Text(" ", style: TextStyle(color: Colors.black, fontSize: 20)));
   }
 }
+
+
+/*
+ExpansionPanelList(
+                  expansionCallback: (panelIndex, isExpanded) {
+                    active = !active;
+                    setState(() {});
+                  },
+                  children: <ExpansionPanel>[
+                    ExpansionPanel(
+                        headerBuilder: (context, isExpanded) {
+                          return Text(
+                            _result[1]["complication"].toString() +
+                                "       " +
+                                _result[1]["severity_str"].toString(),
+                            style: TextStyle(color: Colors.black, fontSize: 16),
+                          );
+                        },
+                        body: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          spacing: 7,
+                          children: [
+                            Text(
+                              "Your risk of getting this complication is " +
+                                  _result[1]["risk_percent"].toString() +
+                                  "%",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            ),
+                            Text(
+                              "Click here read more about this.",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 16),
+                            )
+                          ],
+                        ),
+                        isExpanded: active,
+                        canTapOnHeader: true)
+                  ],
+                ),
+*/
