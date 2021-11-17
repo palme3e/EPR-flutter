@@ -104,6 +104,8 @@ class _ResultsState extends State<Results> {
     false
   ];
 
+  bool notloggedin = false;
+  bool loggedin = false;
   @override
   void initState() {
     super.initState();
@@ -120,64 +122,177 @@ class _ResultsState extends State<Results> {
         appBar: PreferredSize(
             preferredSize: Size.fromHeight(75.0),
             child: topBar(context, authService)),
-        body: _result.length > 0
-            ? Column(children: [
-                Text("Results",
-                    style: TextStyle(color: Colors.black, fontSize: 30)),
-                for (var i = 0; i < _result.length; i++)
-                  ExpansionPanelList(
-                      expansionCallback: (panelIndex, isExpanded) {
-                        active[i] = !active[i];
-                        setState(() {});
-                      },
-                      children: <ExpansionPanel>[
-                        ExpansionPanel(
-                            headerBuilder: (context, isExpanded) {
-                              return Text(
-                                _result[i]["complication"].toString() +
-                                    "       " +
-                                    _result[i]["severity_str"].toString(),
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
-                              );
-                            },
-                            body: Wrap(
-                              alignment: WrapAlignment.spaceBetween,
-                              spacing: 7,
-                              children: [
-                                Text(
-                                  "Your risk of getting this complication is " +
-                                      _result[i]["risk_percent"].toString() +
-                                      "%",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16),
-                                ),
-                                Text(
-                                  "Click here read more about this.",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 16),
-                                )
-                              ],
-                            ),
-                            isExpanded: active[i],
-                            canTapOnHeader: true)
-                      ]),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.blue,
-                    textStyle: const TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    save_results_firebase(_result, authService);
-                  },
-                  child: const Text('Save to my account'),
-                ),
-                Text("To see your results go to the My Results page")
-              ])
-            : Text(" ", style: TextStyle(color: Colors.black, fontSize: 20)));
+        body: SingleChildScrollView(
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+                child: _result.length > 0
+                    ? Column(children: [
+                        Padding(
+                            padding: EdgeInsets.all(25),
+                            child: Text(
+                              "Your calculated risk",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 30),
+                            )),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                      child: Column(children: [
+                                        for (var i = 0; i < _result.length; i++)
+                                          ExpansionPanelList(
+                                              expansionCallback:
+                                                  (panelIndex, isExpanded) {
+                                                active[i] = !active[i];
+                                                setState(() {});
+                                              },
+                                              children: <ExpansionPanel>[
+                                                ExpansionPanel(
+                                                    headerBuilder:
+                                                        (context, isExpanded) {
+                                                      return Row(children: [
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(30, 20,
+                                                                  15, 20),
+                                                          child: Text(
+                                                              _result[i][
+                                                                      "complication"]
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start),
+                                                        ),
+                                                        Text(
+                                                            _result[i][
+                                                                    "severity_str"]
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                color: color.risk_color(
+                                                                    _result[i][
+                                                                            "severity_str"]
+                                                                        .toString()),
+                                                                fontSize: 15),
+                                                            textAlign: TextAlign
+                                                                .center)
+                                                      ]);
+                                                    },
+                                                    body: Wrap(
+                                                      alignment: WrapAlignment
+                                                          .spaceBetween,
+                                                      spacing: 7,
+                                                      children: [
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    20),
+                                                            child: Text(
+                                                              "Your risk of getting this complication is " +
+                                                                  _result[i][
+                                                                          "risk_percent"]
+                                                                      .toString() +
+                                                                  "%",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                            )),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    20),
+                                                            child: Text(
+                                                              "Click here read more about this.",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                            ))
+                                                      ],
+                                                    ),
+                                                    isExpanded: active[i],
+                                                    canTapOnHeader: true)
+                                              ])
+                                      ]))),
+                              Expanded(
+                                  flex: 1,
+                                  child: Column(children: [
+                                    OutlinedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.lightBlueAccent),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.black),
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0))),
+                                      ),
+                                      onPressed: () {
+                                        if (firebaseUser == null) {
+                                          setState(() {
+                                            notloggedin = true;
+                                            loggedin = false;
+                                          });
+                                        } else {
+                                          save_results_firebase(
+                                              _result, authService);
+                                          setState(() {
+                                            loggedin = true;
+                                            notloggedin = false;
+                                          });
+                                        }
+                                      },
+                                      child: const Text('Save results'),
+                                    ),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                        child: Visibility(
+                                            visible: notloggedin,
+                                            child: Text(
+                                                "Log in to save your result.",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: color.red)))),
+                                    Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                        child: Visibility(
+                                            visible: loggedin,
+                                            child: Text(
+                                                "Saved." +
+                                                    "You can see your result on My Page.",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: color.clearblue)))),
+                                    Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(children: [
+                                          Text(
+                                              "Click here to save your results.",
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: color.darkgrey)),
+                                        ]))
+                                  ]))
+                            ])
+                      ])
+                    : Text(" ",
+                        style: TextStyle(color: Colors.black, fontSize: 20)))));
   }
 }
-
 
 /*
 ExpansionPanelList(
