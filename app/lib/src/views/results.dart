@@ -50,7 +50,6 @@ class _ResultsState extends State<Results> {
   var _result = [];
   get_result() async {
     var answers = result.get_answers();
-    print(answers);
     List<dynamic> temp = await request.post_factors(answers);
     setState(() {
       _result = temp;
@@ -65,7 +64,6 @@ class _ResultsState extends State<Results> {
     setState(() {
       _texts = temp;
     });
-    print(temp);
   }
 
   save_results_firebase(result, AuthService) {
