@@ -9,6 +9,7 @@ import 'package:app/src/views/app_bar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app/src/views/components/lang_buttons.dart';
 
 class Results extends StatefulWidget {
   @override
@@ -17,7 +18,6 @@ class Results extends StatefulWidget {
 
 class Item {
   Item({this.expandedValue, this.expandedHeader, this.active = false});
-
   String expandedValue;
   String expandedHeader;
   bool active;
@@ -50,16 +50,27 @@ class _ResultsState extends State<Results> {
   var _result = [];
   get_result() async {
     var answers = result.get_answers();
+    print(answers);
     List<dynamic> temp = await request.post_factors(answers);
     setState(() {
       _result = temp;
     });
   }
 
+  var _texts = new Map<String, String>();
+
+  get_texts() async {
+    Map<String, String> temp =
+        await request.get_translation(get_current_language());
+    setState(() {
+      _texts = temp;
+    });
+    print(temp);
+  }
+
   save_results_firebase(result, AuthService) {
     var firebaseUser = FirebaseAuth.instance.currentUser;
     if (firebaseUser == null) {
-      print("Not logged in");
       return null;
     }
     final firestoreInstance = FirebaseFirestore.instance;
@@ -70,9 +81,7 @@ class _ResultsState extends State<Results> {
         .doc(firebaseUser.uid)
         .collection("result")
         .doc(resultID)
-        .set({resultID: result}).then((_) {
-      print("success!");
-    });
+        .set({resultID: result}).then((_) {});
   }
 
   List<Item> generate_items(List<Map> complication) {
@@ -110,6 +119,7 @@ class _ResultsState extends State<Results> {
   void initState() {
     super.initState();
     get_result();
+    get_texts();
   }
 
   @override
@@ -293,43 +303,3 @@ class _ResultsState extends State<Results> {
                         style: TextStyle(color: Colors.black, fontSize: 20)))));
   }
 }
-
-/*
-ExpansionPanelList(
-                  expansionCallback: (panelIndex, isExpanded) {
-                    active = !active;
-                    setState(() {});
-                  },
-                  children: <ExpansionPanel>[
-                    ExpansionPanel(
-                        headerBuilder: (context, isExpanded) {
-                          return Text(
-                            _result[1]["complication"].toString() +
-                                "       " +
-                                _result[1]["severity_str"].toString(),
-                            style: TextStyle(color: Colors.black, fontSize: 16),
-                          );
-                        },
-                        body: Wrap(
-                          alignment: WrapAlignment.spaceBetween,
-                          spacing: 7,
-                          children: [
-                            Text(
-                              "Your risk of getting this complication is " +
-                                  _result[1]["risk_percent"].toString() +
-                                  "%",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            ),
-                            Text(
-                              "Click here read more about this.",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
-                            )
-                          ],
-                        ),
-                        isExpanded: active,
-                        canTapOnHeader: true)
-                  ],
-                ),
-*/

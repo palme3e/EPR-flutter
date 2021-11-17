@@ -13,6 +13,7 @@ import '../auth/auth_service.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'Style/colors.dart' as color;
 import 'package:app/src/views/app_bar.dart';
+import 'package:app/src/views/components/lang_buttons.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,8 +26,6 @@ class Factors extends StatefulWidget {
   @override
   _FactorsState createState() => _FactorsState();
 }
-
-var question_list = request.get_factors("en");
 
 check_factor_type(factor) {
   if (factor["answertype"] == "boolean") {
@@ -49,17 +48,18 @@ get_answers() {
 class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
-  var _texts = new Map<String, String>() ;
+  var _texts = new Map<String, String>();
 
-  getTexts() async{
-    Map<String,String> temp = await request.get_translation("en");
+  get_texts() async {
+    Map<String, String> temp =
+        await request.get_translation(get_current_language());
     setState(() {
       _texts = temp;
     });
   }
 
   get_questions() async {
-    List<dynamic> temp = await request.get_factors("en");
+    List<dynamic> temp = await request.get_factors(get_current_language());
     setState(() {
       _questions = temp;
     });
@@ -69,7 +69,7 @@ class _FactorsState extends State<Factors> {
   void initState() {
     super.initState();
     get_questions();
-    getTexts();
+    get_texts();
   }
 
   _next() {
@@ -101,64 +101,60 @@ class _FactorsState extends State<Factors> {
       appBar: topBar(context, authService),
       body: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        
         Text(
             _questions.length > 0
                 ? _questions[_indexQuestion]["question"]
                 : " ",
-            style: TextStyle(fontSize: 25, color: color.darkblue))
-            ,
+            style: TextStyle(fontSize: 25, color: color.darkblue)),
         _questions.length > 0
-        ?Center(
-          child: (check_factor_type(_questions[_indexQuestion])) //bool = true
-                ? Row(children: [
-                    Spacer(),
-                    TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Colors.blue,
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        onPressed: () {
-                          (update_answer(_questions[_indexQuestion], false));
-                          (_next());
-                        },
-                        child: Text(
-                          _texts.length > 0
-                          ? _texts["button_no"]
-                          : "Default no"),
+            ? Center(
+                child: (check_factor_type(
+                        _questions[_indexQuestion])) //bool = true
+                    ? Row(children: [
+                        Spacer(),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.blue,
+                            textStyle: const TextStyle(fontSize: 20),
                           ),
-                    TextButton(
+                          onPressed: () {
+                            (update_answer(_questions[_indexQuestion], false));
+                            (_next());
+                          },
+                          child: Text(_texts.length > 0
+                              ? _texts["button_no"]
+                              : "Default no"),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.all(16.0),
+                            primary: Colors.blue,
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            (update_answer(_questions[_indexQuestion], true));
+                            (_next());
+                          },
+                          child: Text(_texts.length > 0
+                              ? _texts["button_yes"]
+                              : "Default yes"),
+                        ),
+                        Spacer()
+                      ])
+                    : TextButton(
                         style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
+                          //padding: const EdgeInsets.all(16.0),
                           primary: Colors.blue,
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          (update_answer(_questions[_indexQuestion], true));
+                          (update_answer(_questions[_indexQuestion],
+                              9)); //TODO fix number and textfield
                           (_next());
                         },
-                        child: Text(
-                          _texts.length > 0
-                          ? _texts["button_yes"]
-                          : "Default yes"),
-                        ),
-                    Spacer()
-                  ])
-                : TextButton(
-                    style: TextButton.styleFrom(
-                      //padding: const EdgeInsets.all(16.0),
-                      primary: Colors.blue,
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      (update_answer(_questions[_indexQuestion],
-                          9)); //TODO fix number and textfield
-                      (_next());
-                    },
-                    child: (Text("Int"))))
-      : Loading()])
-      
-      ),
+                        child: (Text("Int"))))
+            : Loading()
+      ])),
       floatingActionButton: TextButton(
         style: TextButton.styleFrom(
           //padding: const EdgeInsets.all(16.0),
@@ -168,9 +164,7 @@ class _FactorsState extends State<Factors> {
         onPressed: () {
           (_next());
         },
-        child:Text(_texts.length > 0
-                ? _texts["button_skip"]
-                : "Default skip"),
+        child: Text(_texts.length > 0 ? _texts["button_skip"] : "Default skip"),
       ),
     );
   }
