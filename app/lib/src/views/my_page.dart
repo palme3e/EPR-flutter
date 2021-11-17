@@ -1,5 +1,4 @@
 import 'package:app/src/auth/auth_service.dart';
-import 'package:app/src/views/Components/result_showing.dart';
 import 'package:app/src/views/app_bar.dart';
 import 'package:app/src/views/factors.dart';
 import 'package:app/src/views/main_screen.dart';
