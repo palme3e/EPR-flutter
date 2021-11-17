@@ -40,7 +40,7 @@ AppBar topBar(BuildContext context, AuthService authService) => AppBar(
             style: TextButton.styleFrom(
               //padding: const EdgeInsets.all(16.0),
               primary: Colors.blue,
-              textStyle: const TextStyle(fontSize: 20),
+              textStyle: const TextStyle(fontSize: 15),
             ),
             onPressed: () {
               Navigator.push(

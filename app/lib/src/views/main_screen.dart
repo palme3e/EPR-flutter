@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'Style/colors.dart' as color;
+import 'package:app/src/views/components/lang_buttons.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -16,10 +17,10 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  var _texts = new Map<String, String>() ;
+  var _texts = new Map<String, String>();
 
-  getTexts() async{
-    Map<String,String> temp = await get_translation("en");
+  get_texts() async {
+    Map<String, String> temp = await get_translation(get_current_language());
     setState(() {
       _texts = temp;
     });
@@ -28,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    getTexts();
+    get_texts();
   }
 
   @override
@@ -36,46 +37,62 @@ class _MainScreenState extends State<MainScreen> {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
       appBar: topBar(context, authService),
-      
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Flexible(
-                flex: 8,
-                fit: FlexFit.loose,
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      _texts.length > 0
-                ? _texts["front_page_paragraph_1"]
-                : " ",
-                style: const TextStyle(
-                                color: Colors.black, fontSize: 20),
-                            softWrap: true,
-                    )
-                    )
-                    ),
-            Spacer(
-              flex: 1,
-            ),
-            Flexible(
-                flex: 8,
-                fit: FlexFit.loose,
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      _texts.length > 0
-                ? _texts["front_page_paragraph_2"]
-                : " ",
-                style: const TextStyle(
-                                color: Colors.black, fontSize: 20),
-                            softWrap: true,
-                    )))
-          ],
-        ),
-      ),
+
+      body: Column(children: [
+        Padding(
+            padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(5),
+                    child: language_button(context, "en")),
+                Padding(
+                    padding: EdgeInsets.all(5),
+                    child: language_button(context, "no")),
+                Padding(
+                    padding: EdgeInsets.all(5),
+                    child: language_button(context, "fr")),
+              ],
+            )),
+        Padding(
+          padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Flexible(
+                  flex: 8,
+                  fit: FlexFit.loose,
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        _texts.length > 0
+                            ? _texts["front_page_paragraph_1"]
+                            : " ",
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 20),
+                        softWrap: true,
+                      ))),
+              Spacer(
+                flex: 1,
+              ),
+              Flexible(
+                  flex: 8,
+                  fit: FlexFit.loose,
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        _texts.length > 0
+                            ? _texts["front_page_paragraph_2"]
+                            : " ",
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 20),
+                        softWrap: true,
+                      )))
+            ],
+          ),
+        )
+      ]),
       //floatingActionButton: FloatingActionButton(
       //onPressed: () {
       // Add your onPressed code here!
@@ -96,9 +113,7 @@ class _MainScreenState extends State<MainScreen> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => Factors()));
         },
-        child:Text(_texts.length > 0
-                ? _texts["button_start"]
-                : "Start"),
+        child: Text(_texts.length > 0 ? _texts["button_start"] : "Start"),
       ),
     );
   }
