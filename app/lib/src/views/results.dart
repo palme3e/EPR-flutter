@@ -10,6 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
+import 'package:app/src/networking/constants/links.dart' as link;
+import 'package:url_launcher/url_launcher.dart';
 
 class Results extends StatefulWidget {
   @override
@@ -111,6 +113,19 @@ class _ResultsState extends State<Results> {
     false
   ];
 
+  _launch_URL(String complication) async {
+    complication = complication.replaceAll(' ', '');
+    complication = complication.replaceAll('-', '');
+
+    var url = link.get_url(complication);
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   bool notloggedin = false;
   bool loggedin = false;
   @override
@@ -169,7 +184,7 @@ class _ResultsState extends State<Results> {
                                                                   15, 20),
                                                           child: Text(
                                                               _result[i][
-                                                                      "complication"]
+                                                                      "complication"] //ici
                                                                   .toString(),
                                                               style: TextStyle(
                                                                   color: Colors
@@ -214,16 +229,37 @@ class _ResultsState extends State<Results> {
                                                                   fontSize: 16),
                                                             )),
                                                         Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    20),
-                                                            child: Text(
-                                                              "Click here read more about this.",
-                                                              style: TextStyle(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  20),
+                                                          child: TextButton(
+                                                            style: TextButton
+                                                                .styleFrom(
+                                                              //padding: const EdgeInsets.all(16.0),
+                                                              primary:
+                                                                  Colors.blue,
+                                                              textStyle: TextStyle(
                                                                   color: Colors
                                                                       .black,
                                                                   fontSize: 16),
-                                                            ))
+                                                            ),
+                                                            onPressed: () {
+                                                              _launch_URL(_result[
+                                                                      i][
+                                                                  "complication"]);
+                                                            },
+                                                            child: Text(
+                                                                "Click here to read more about this complication"),
+                                                          ),
+
+                                                          // Text(
+                                                          //   "Click here read more about this.",
+                                                          //   style: TextStyle(
+                                                          //       color: Colors
+                                                          //           .black,
+                                                          //       fontSize: 16),
+                                                          // )
+                                                        )
                                                       ],
                                                     ),
                                                     isExpanded: active[i],
