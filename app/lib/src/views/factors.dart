@@ -14,6 +14,7 @@ import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'Style/colors.dart' as color;
 import 'package:app/src/views/app_bar.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -49,6 +50,14 @@ class _FactorsState extends State<Factors> {
   var _indexQuestion = 0;
   var _questions = [];
   var _texts = new Map<String, String>();
+
+  add_factors(Map question) {
+    if (question["subfactors"].length > 0) {
+      setState(() {
+        _questions.addAll(question["subfactors"]);
+      });
+    }
+  }
 
   get_texts() async {
     Map<String, String> temp =
@@ -116,6 +125,18 @@ class _FactorsState extends State<Factors> {
     });
   }
 
+  _previous() {
+    setState(() {
+      var firstIndex = 0;
+      if (_indexQuestion > firstIndex) {
+        _indexQuestion--;
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainScreen()));
+      }
+    });
+  }
+
   int valueInt = 0;
   @override
   Widget build(BuildContext context) {
@@ -125,6 +146,20 @@ class _FactorsState extends State<Factors> {
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+              width: 800,
+              child: _questions.length > 0
+                  ? StepProgressIndicator(
+                      totalSteps: _questions.length,
+                      currentStep: _indexQuestion,
+                      size: 15,
+                      padding: 0,
+                      selectedColor: color.pink,
+                      unselectedColor: color.backgroundgrey,
+                      roundedEdges: Radius.circular(10),
+                    )
+                  : Loading()),
           Text(
               _questions.length > 0
                   ? _questions[_indexQuestion]["question"]
@@ -143,6 +178,7 @@ class _FactorsState extends State<Factors> {
                                   textStyle: const TextStyle(fontSize: 20),
                                 ),
                                 onPressed: () {
+                                  add_factors(_questions[_indexQuestion]);
                                   (update_answer(
                                       _questions[_indexQuestion], false));
                                   (_next());
@@ -197,9 +233,16 @@ class _FactorsState extends State<Factors> {
                                             const TextStyle(fontSize: 20),
                                       ),
                                       onPressed: () {
-                                        (update_answer(
-                                            _questions[_indexQuestion],
-                                            valueInt));
+                                        if (valueInt > 0 && valueInt != null) {
+                                          (update_answer(
+                                              _questions[_indexQuestion],
+                                              valueInt));
+                                          add_factors(
+                                              _questions[_indexQuestion]);
+                                        }
+                                        setState(() {
+                                          valueInt = 0;
+                                        });
                                         (_next());
                                       },
                                       child: Text(_texts.length > 0
@@ -207,68 +250,6 @@ class _FactorsState extends State<Factors> {
                                           : "Default continue"),
                                     )
                                   ]))),
-                  // Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  //   OutlinedButton(
-                  //     style: ButtonStyle(
-                  //       backgroundColor: MaterialStateProperty.all<Color>(
-                  //           Colors.transparent),
-                  //       foregroundColor:
-                  //           MaterialStateProperty.all<Color>(Colors.black),
-                  //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(30.0))),
-                  //     ),
-                  //     onPressed: () {
-                  //       print("hei");
-                  //     },
-                  //     child: const Text('Previous'),
-                  //   ),
-                  //   Padding(
-                  //       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  //       child: OutlinedButton(
-                  //           style: ButtonStyle(
-                  //             backgroundColor: MaterialStateProperty.all<Color>(
-                  //                 Colors.transparent),
-                  //             foregroundColor: MaterialStateProperty.all<Color>(
-                  //                 Colors.black),
-                  //             shape: MaterialStateProperty.all(
-                  //                 RoundedRectangleBorder(
-                  //                     borderRadius:
-                  //                         BorderRadius.circular(30.0))),
-                  //           ),
-                  //           onPressed: () {
-                  //             print("hei");
-                  //           },
-                  //           child: const Text('Skip')))
-                  // ])
-                  // Row(mainAxisAlignment: MainAxisAlignment.center,
-                  //     //crossAxisAlignment: CrossAxisAlignment.center,
-                  //     children: [
-                  //       TextButton(
-                  //           style: TextButton.styleFrom(
-                  //             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //             primary: Colors.grey,
-                  //             textStyle: const TextStyle(fontSize: 20),
-                  //           ),
-                  //           onPressed: () {
-                  //             (_next());
-                  //           },
-                  //           child: Text(_texts.length > 0
-                  //               ? _texts["button_previous"]
-                  //               : "Default previous")),
-                  //       TextButton(
-                  //         style: TextButton.styleFrom(
-                  //           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //           primary: Colors.grey,
-                  //           textStyle: const TextStyle(fontSize: 20),
-                  //         ),
-                  //         onPressed: () {
-                  //           (_next());
-                  //         },
-                  //         child: Text(_texts.length > 0
-                  //             ? _texts["button_skip"]
-                  //             : "Default skip"),
-                  //       ),
-                  //     ])
                 ])
               : Loading()
         ])),
@@ -286,12 +267,14 @@ class _FactorsState extends State<Factors> {
                       borderRadius: BorderRadius.circular(30.0))),
                 ),
                 onPressed: () {
-                  print("hei");
+                  _previous();
                 },
-                child: const Text('Previous'),
+                child: Text(_texts.length > 0
+                    ? _texts["button_previous"]
+                    : "Default previous"),
               )),
           Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              padding: EdgeInsets.zero,
               child: OutlinedButton(
                   style: ButtonStyle(
                     backgroundColor:
@@ -302,36 +285,11 @@ class _FactorsState extends State<Factors> {
                         borderRadius: BorderRadius.circular(30.0))),
                   ),
                   onPressed: () {
-                    print("hei");
+                    _next();
                   },
-                  child: const Text('Skip')))
-        ])
-        //     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        //   TextButton(
-        //       style: TextButton.styleFrom(
-        //         padding: const EdgeInsets.fromLTRB(40, 0, 0, 10),
-        //         primary: Colors.blue,
-        //         textStyle: const TextStyle(fontSize: 20),
-        //       ),
-        //       onPressed: () {
-        //         (_next());
-        //       },
-        //       child: Text(_texts.length > 0
-        //           ? _texts["button_previous"]
-        //           : "Default previous")),
-        //   TextButton(
-        //     style: TextButton.styleFrom(
-        //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-        //       primary: Colors.blue,
-        //       textStyle: const TextStyle(fontSize: 20),
-        //     ),
-        //     onPressed: () {
-        //       (_next());
-        //     },
-        //     child: Text(
-        //         _texts.length > 0 ? _texts["button_skip"] : "Default skip"),
-        //   ),
-        // ])
-        );
+                  child: Text(_texts.length > 0
+                      ? _texts["button_skip"]
+                      : "Default skip")))
+        ]));
   }
 }
