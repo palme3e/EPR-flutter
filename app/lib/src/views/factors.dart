@@ -116,6 +116,18 @@ class _FactorsState extends State<Factors> {
     });
   }
 
+  _previous() {
+    setState(() {
+      var firstIndex = 0;
+      if (_indexQuestion > firstIndex) {
+        _indexQuestion--;
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainScreen()));
+      }
+    });
+  }
+
   int valueInt = 0;
   @override
   Widget build(BuildContext context) {
@@ -207,68 +219,6 @@ class _FactorsState extends State<Factors> {
                                           : "Default continue"),
                                     )
                                   ]))),
-                  // Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  //   OutlinedButton(
-                  //     style: ButtonStyle(
-                  //       backgroundColor: MaterialStateProperty.all<Color>(
-                  //           Colors.transparent),
-                  //       foregroundColor:
-                  //           MaterialStateProperty.all<Color>(Colors.black),
-                  //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  //           borderRadius: BorderRadius.circular(30.0))),
-                  //     ),
-                  //     onPressed: () {
-                  //       print("hei");
-                  //     },
-                  //     child: const Text('Previous'),
-                  //   ),
-                  //   Padding(
-                  //       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                  //       child: OutlinedButton(
-                  //           style: ButtonStyle(
-                  //             backgroundColor: MaterialStateProperty.all<Color>(
-                  //                 Colors.transparent),
-                  //             foregroundColor: MaterialStateProperty.all<Color>(
-                  //                 Colors.black),
-                  //             shape: MaterialStateProperty.all(
-                  //                 RoundedRectangleBorder(
-                  //                     borderRadius:
-                  //                         BorderRadius.circular(30.0))),
-                  //           ),
-                  //           onPressed: () {
-                  //             print("hei");
-                  //           },
-                  //           child: const Text('Skip')))
-                  // ])
-                  // Row(mainAxisAlignment: MainAxisAlignment.center,
-                  //     //crossAxisAlignment: CrossAxisAlignment.center,
-                  //     children: [
-                  //       TextButton(
-                  //           style: TextButton.styleFrom(
-                  //             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //             primary: Colors.grey,
-                  //             textStyle: const TextStyle(fontSize: 20),
-                  //           ),
-                  //           onPressed: () {
-                  //             (_next());
-                  //           },
-                  //           child: Text(_texts.length > 0
-                  //               ? _texts["button_previous"]
-                  //               : "Default previous")),
-                  //       TextButton(
-                  //         style: TextButton.styleFrom(
-                  //           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  //           primary: Colors.grey,
-                  //           textStyle: const TextStyle(fontSize: 20),
-                  //         ),
-                  //         onPressed: () {
-                  //           (_next());
-                  //         },
-                  //         child: Text(_texts.length > 0
-                  //             ? _texts["button_skip"]
-                  //             : "Default skip"),
-                  //       ),
-                  //     ])
                 ])
               : Loading()
         ])),
@@ -286,12 +236,14 @@ class _FactorsState extends State<Factors> {
                       borderRadius: BorderRadius.circular(30.0))),
                 ),
                 onPressed: () {
-                  print("hei");
+                  _previous();
                 },
-                child: const Text('Previous'),
+                child: Text(_texts.length > 0
+                    ? _texts["button_previous"]
+                    : "Default previous"),
               )),
           Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              padding: EdgeInsets.zero,
               child: OutlinedButton(
                   style: ButtonStyle(
                     backgroundColor:
@@ -302,36 +254,11 @@ class _FactorsState extends State<Factors> {
                         borderRadius: BorderRadius.circular(30.0))),
                   ),
                   onPressed: () {
-                    print("hei");
+                    _next();
                   },
-                  child: const Text('Skip')))
-        ])
-        //     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        //   TextButton(
-        //       style: TextButton.styleFrom(
-        //         padding: const EdgeInsets.fromLTRB(40, 0, 0, 10),
-        //         primary: Colors.blue,
-        //         textStyle: const TextStyle(fontSize: 20),
-        //       ),
-        //       onPressed: () {
-        //         (_next());
-        //       },
-        //       child: Text(_texts.length > 0
-        //           ? _texts["button_previous"]
-        //           : "Default previous")),
-        //   TextButton(
-        //     style: TextButton.styleFrom(
-        //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-        //       primary: Colors.blue,
-        //       textStyle: const TextStyle(fontSize: 20),
-        //     ),
-        //     onPressed: () {
-        //       (_next());
-        //     },
-        //     child: Text(
-        //         _texts.length > 0 ? _texts["button_skip"] : "Default skip"),
-        //   ),
-        // ])
-        );
+                  child: Text(_texts.length > 0
+                      ? _texts["button_skip"]
+                      : "Default skip")))
+        ]));
   }
 }
