@@ -84,19 +84,19 @@ class _ResultsState extends State<Results> {
         .set({resultID: result}).then((_) {});
   }
 
-  List<Item> generate_items(List<Map> complication) {
-    var item_list = [];
-    for (Map comp in complication) {
-      item_list.add(Item(
-          expandedHeader: comp["complication"].toString() +
-              " " +
-              comp["severity_str"].toString(),
-          expandedValue: "Your risk of getting this complication is " +
-              comp["risk_percent"].toString() +
-              "%"));
-    }
-    return item_list;
-  }
+  // List<Item> generate_items(List<Map> complication) {
+  //   var item_list = [];
+  //   for (Map comp in complication) {
+  //     item_list.add(Item(
+  //         expandedHeader: comp["complication"].toString() +
+  //             " " +
+  //             comp["severity_str"].toString(),
+  //         expandedValue: "Your risk of getting this complication is " +
+  //             comp["risk_percent"].toString() +
+  //             "%"));
+  //   }
+  //   return item_list;
+  // }
 
   List<bool> active = [
     false,
@@ -153,7 +153,7 @@ class _ResultsState extends State<Results> {
                         Padding(
                             padding: EdgeInsets.all(25),
                             child: Text(
-                              "Your calculated risk",
+                              _texts["risk_page_title"],
                               style:
                                   TextStyle(color: Colors.black, fontSize: 30),
                             )),
@@ -218,7 +218,8 @@ class _ResultsState extends State<Results> {
                                                                 EdgeInsets.all(
                                                                     20),
                                                             child: Text(
-                                                              "Your risk of getting this complication is " +
+                                                              _texts["your_risk"] +
+                                                                  " " +
                                                                   _result[i][
                                                                           "risk_percent"]
                                                                       .toString() +
@@ -235,7 +236,6 @@ class _ResultsState extends State<Results> {
                                                           child: TextButton(
                                                             style: TextButton
                                                                 .styleFrom(
-                                                              //padding: const EdgeInsets.all(16.0),
                                                               primary:
                                                                   Colors.blue,
                                                               textStyle: TextStyle(
@@ -248,17 +248,9 @@ class _ResultsState extends State<Results> {
                                                                       i][
                                                                   "complication"]);
                                                             },
-                                                            child: Text(
-                                                                "Click here to read more about this complication"),
+                                                            child: Text(_texts[
+                                                                "read_more"]),
                                                           ),
-
-                                                          // Text(
-                                                          //   "Click here read more about this.",
-                                                          //   style: TextStyle(
-                                                          //       color: Colors
-                                                          //           .black,
-                                                          //       fontSize: 16),
-                                                          // )
                                                         )
                                                       ],
                                                     ),
@@ -298,7 +290,7 @@ class _ResultsState extends State<Results> {
                                           });
                                         }
                                       },
-                                      child: const Text('Save results'),
+                                      child: Text(_texts["save_button"]),
                                     ),
                                     Padding(
                                         padding:
@@ -306,7 +298,7 @@ class _ResultsState extends State<Results> {
                                         child: Visibility(
                                             visible: notloggedin,
                                             child: Text(
-                                                "Log in to save your result.",
+                                                _texts["logg_in_resultat"],
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     color: color.red)))),
@@ -316,16 +308,14 @@ class _ResultsState extends State<Results> {
                                         child: Visibility(
                                             visible: loggedin,
                                             child: Text(
-                                                "Saved." +
-                                                    "You can see your result on My Page.",
+                                                _texts["see_saved_info"],
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     color: color.clearblue)))),
                                     Padding(
                                         padding: EdgeInsets.all(10),
                                         child: Column(children: [
-                                          Text(
-                                              "Click here to save your results.",
+                                          Text(_texts["saved_info"],
                                               style: TextStyle(
                                                   fontSize: 12,
                                                   color: color.darkgrey)),

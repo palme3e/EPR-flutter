@@ -2,6 +2,7 @@ import 'package:app/src/auth/auth_service.dart';
 import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/login.dart';
 import 'package:app/src/views/main_screen.dart';
+import 'package:app/src/views/screen_2.dart';
 import 'package:app/src/views/factors.dart';
 import 'package:app/src/views/factors.dart';
 import 'package:app/src/views/my_page.dart';
@@ -19,14 +20,14 @@ class Navigation extends StatelessWidget {
           if (authService.status == Status.Authenticated)
             MaterialPage(
               key: ValueKey<String>('main'),
-              child: Results(),
+              child: MainScreen(),
             ),
           if (authService.status == Status.Unauthenticated ||
               authService.status == Status.Fail ||
               authService.status == Status.Login)
             MaterialPage(
               key: ValueKey<String>('public'),
-              child: Results(), //change later
+              child: Screen2(), //change later
             ),
           if (authService.status == Status.Fail ||
               authService.status == Status.Login)

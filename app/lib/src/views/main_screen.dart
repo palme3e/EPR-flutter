@@ -2,7 +2,7 @@ import 'package:app/src/auth/auth_service.dart';
 import 'package:app/src/networking/constants/endpoints.dart';
 import 'package:app/src/networking/requests.dart';
 import 'package:app/src/views/app_bar.dart';
-import 'package:app/src/views/factors.dart';
+import 'package:app/src/views/screen_2.dart';
 import 'package:app/src/views/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -37,7 +37,6 @@ class _MainScreenState extends State<MainScreen> {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
       appBar: topBar(context, authService),
-
       body: Column(children: [
         Padding(
             padding: EdgeInsets.fromLTRB(30, 10, 10, 10),
@@ -60,15 +59,15 @@ class _MainScreenState extends State<MainScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Text(_texts.length > 0 ? _texts["leading_question"] : " ",
+                  style: const TextStyle(color: Colors.black, fontSize: 20)),
               Flexible(
                   flex: 8,
                   fit: FlexFit.loose,
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        _texts.length > 0
-                            ? _texts["front_page_paragraph_1"]
-                            : " ",
+                        _texts.length > 0 ? _texts["paragraph_page1"] : " ",
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
                         softWrap: true,
@@ -82,9 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        _texts.length > 0
-                            ? _texts["front_page_paragraph_2"]
-                            : " ",
+                        _texts.length > 0 ? _texts["press_start"] : " ",
                         style:
                             const TextStyle(color: Colors.black, fontSize: 20),
                         softWrap: true,
@@ -93,16 +90,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         )
       ]),
-      //floatingActionButton: FloatingActionButton(
-      //onPressed: () {
-      // Add your onPressed code here!
-      //Navigator.push(
-      //  context, MaterialPageRoute(builder: (context) => Factors()));
-      //},
-      //child: const Icon(Icons.play_arrow),
-      //backgroundColor: Colors.blue,
-      //),
-
       floatingActionButton: TextButton(
         style: TextButton.styleFrom(
           //padding: const EdgeInsets.all(16.0),
@@ -111,7 +98,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Factors()));
+              context, MaterialPageRoute(builder: (context) => Screen2()));
         },
         child: Text(_texts.length > 0 ? _texts["button_start"] : "Start"),
       ),

@@ -8801,6 +8801,1007 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 678,
+  "fields": {
+    "action_time": "2021-11-18T15:18:41.592Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "129",
+    "object_repr": "Text: risk_page_title",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 679,
+  "fields": {
+    "action_time": "2021-11-18T15:19:19.703Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "143",
+    "object_repr": "Text: risk_page_title (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 680,
+  "fields": {
+    "action_time": "2021-11-18T15:19:41.955Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "144",
+    "object_repr": "Text: risk_page_title (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 681,
+  "fields": {
+    "action_time": "2021-11-18T15:20:32.337Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "145",
+    "object_repr": "Text: risk_page_title (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 682,
+  "fields": {
+    "action_time": "2021-11-18T15:29:29.004Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "130",
+    "object_repr": "Text: save_button",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 683,
+  "fields": {
+    "action_time": "2021-11-18T15:29:54.664Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "146",
+    "object_repr": "Text: save_button (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 684,
+  "fields": {
+    "action_time": "2021-11-18T15:30:22.667Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "147",
+    "object_repr": "Text: save_button (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 685,
+  "fields": {
+    "action_time": "2021-11-18T15:30:57.516Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "148",
+    "object_repr": "Text: save_button (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 686,
+  "fields": {
+    "action_time": "2021-11-18T15:34:47.483Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "131",
+    "object_repr": "Text: saved_info",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 687,
+  "fields": {
+    "action_time": "2021-11-18T15:35:26.941Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "149",
+    "object_repr": "Text: saved_info (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 688,
+  "fields": {
+    "action_time": "2021-11-18T15:35:52.363Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "150",
+    "object_repr": "Text: saved_info (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 689,
+  "fields": {
+    "action_time": "2021-11-18T15:36:10.273Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "151",
+    "object_repr": "Text: saved_info (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 690,
+  "fields": {
+    "action_time": "2021-11-18T15:38:06.469Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "132",
+    "object_repr": "Text: see_saved_info",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 691,
+  "fields": {
+    "action_time": "2021-11-18T15:38:48.284Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "152",
+    "object_repr": "Text: see_saved_info (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 692,
+  "fields": {
+    "action_time": "2021-11-18T15:39:14.852Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "153",
+    "object_repr": "Text: see_saved_info (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 693,
+  "fields": {
+    "action_time": "2021-11-18T15:39:32.562Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "154",
+    "object_repr": "Text: see_saved_info (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 694,
+  "fields": {
+    "action_time": "2021-11-18T15:41:08.131Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "133",
+    "object_repr": "Text: logg_in_resultat",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 695,
+  "fields": {
+    "action_time": "2021-11-18T15:41:28.589Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "155",
+    "object_repr": "Text: logg_in_resultat (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 696,
+  "fields": {
+    "action_time": "2021-11-18T15:42:08.852Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "156",
+    "object_repr": "Text: logg_in_resultat (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 697,
+  "fields": {
+    "action_time": "2021-11-18T15:42:24.948Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "157",
+    "object_repr": "Text: logg_in_resultat (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 698,
+  "fields": {
+    "action_time": "2021-11-18T15:43:57.275Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "134",
+    "object_repr": "Text: your_risk",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 699,
+  "fields": {
+    "action_time": "2021-11-18T15:44:18.383Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "158",
+    "object_repr": "Text: your_risk (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 700,
+  "fields": {
+    "action_time": "2021-11-18T15:44:50.401Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "159",
+    "object_repr": "Text: your_risk (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 701,
+  "fields": {
+    "action_time": "2021-11-18T15:45:03.395Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "160",
+    "object_repr": "Text: your_risk (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 702,
+  "fields": {
+    "action_time": "2021-11-18T15:47:35.459Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "135",
+    "object_repr": "Text: read_more",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 703,
+  "fields": {
+    "action_time": "2021-11-18T15:47:51.563Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "161",
+    "object_repr": "Text: read_more (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 704,
+  "fields": {
+    "action_time": "2021-11-18T15:48:09.671Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "162",
+    "object_repr": "Text: read_more (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 705,
+  "fields": {
+    "action_time": "2021-11-18T15:48:16.293Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "161",
+    "object_repr": "Text: read_more (en)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 706,
+  "fields": {
+    "action_time": "2021-11-18T15:48:34.070Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "163",
+    "object_repr": "Text: read_more (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 707,
+  "fields": {
+    "action_time": "2021-11-18T16:01:43.879Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "136",
+    "object_repr": "Text: my_page",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 708,
+  "fields": {
+    "action_time": "2021-11-18T16:01:58.568Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "164",
+    "object_repr": "Text: my_page (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 709,
+  "fields": {
+    "action_time": "2021-11-18T16:02:09.406Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "165",
+    "object_repr": "Text: my_page (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 710,
+  "fields": {
+    "action_time": "2021-11-18T16:02:36.279Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "166",
+    "object_repr": "Text: my_page (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 711,
+  "fields": {
+    "action_time": "2021-11-18T16:03:06.785Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "137",
+    "object_repr": "Text: sign_out_button",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 712,
+  "fields": {
+    "action_time": "2021-11-18T16:03:27.527Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "167",
+    "object_repr": "Text: sign_out_button (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 713,
+  "fields": {
+    "action_time": "2021-11-18T16:03:37.312Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "168",
+    "object_repr": "Text: sign_out_button (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 714,
+  "fields": {
+    "action_time": "2021-11-18T16:03:57.802Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "169",
+    "object_repr": "Text: sign_out_button (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 715,
+  "fields": {
+    "action_time": "2021-11-18T16:26:01.983Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "138",
+    "object_repr": "Text: warning_text_page_2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 716,
+  "fields": {
+    "action_time": "2021-11-18T16:26:16.689Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "96",
+    "object_repr": "Text: warning_text_page_2 (fr)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 717,
+  "fields": {
+    "action_time": "2021-11-18T16:26:29.577Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "89",
+    "object_repr": "Text: warning_text_page_2 (no)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 718,
+  "fields": {
+    "action_time": "2021-11-18T16:29:11.154Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "139",
+    "object_repr": "Text: leading_question",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 719,
+  "fields": {
+    "action_time": "2021-11-18T16:29:30.426Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "170",
+    "object_repr": "Text: leading_question (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 720,
+  "fields": {
+    "action_time": "2021-11-18T16:29:44.158Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "171",
+    "object_repr": "Text: leading_question (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 721,
+  "fields": {
+    "action_time": "2021-11-18T16:30:19.202Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "172",
+    "object_repr": "Text: leading_question (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 722,
+  "fields": {
+    "action_time": "2021-11-18T16:30:52.752Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "140",
+    "object_repr": "Text: paragraph_page1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 723,
+  "fields": {
+    "action_time": "2021-11-18T16:31:23.565Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "95",
+    "object_repr": "Text: paragraph_page1 (fr)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\", \"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 724,
+  "fields": {
+    "action_time": "2021-11-18T16:31:48.918Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "90",
+    "object_repr": "Text: paragraph_page1 (no)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\", \"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 725,
+  "fields": {
+    "action_time": "2021-11-18T16:32:05.646Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Text: front_page_paragraph_1 (en)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 726,
+  "fields": {
+    "action_time": "2021-11-18T16:32:25.810Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "141",
+    "object_repr": "Text: press_start",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 727,
+  "fields": {
+    "action_time": "2021-11-18T16:32:38.275Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "173",
+    "object_repr": "Text: press_start (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 728,
+  "fields": {
+    "action_time": "2021-11-18T16:32:52.174Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "174",
+    "object_repr": "Text: press_start (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 729,
+  "fields": {
+    "action_time": "2021-11-18T16:33:06.591Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "175",
+    "object_repr": "Text: press_start (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 730,
+  "fields": {
+    "action_time": "2021-11-18T16:33:11.464Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "175",
+    "object_repr": "Text: press_start (fr)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 731,
+  "fields": {
+    "action_time": "2021-11-18T16:33:41.133Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "142",
+    "object_repr": "Text: intro_complication",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 732,
+  "fields": {
+    "action_time": "2021-11-18T16:33:52.734Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "176",
+    "object_repr": "Text: intro_complication (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 733,
+  "fields": {
+    "action_time": "2021-11-18T16:34:09.002Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "177",
+    "object_repr": "Text: intro_complication (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 734,
+  "fields": {
+    "action_time": "2021-11-18T16:34:26.178Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "178",
+    "object_repr": "Text: intro_complication (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 735,
+  "fields": {
+    "action_time": "2021-11-18T16:35:55.429Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "143",
+    "object_repr": "Text: complication_list_1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 736,
+  "fields": {
+    "action_time": "2021-11-18T16:36:23.343Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "143",
+    "object_repr": "List: complication_list_1",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content type\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 737,
+  "fields": {
+    "action_time": "2021-11-18T16:37:28.753Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "101",
+    "object_repr": "List: complication_list_1 (fr)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\", \"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 738,
+  "fields": {
+    "action_time": "2021-11-18T16:37:59.301Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "91",
+    "object_repr": "List: complication_list_1 (no)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\", \"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 739,
+  "fields": {
+    "action_time": "2021-11-18T16:38:27.761Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "82",
+    "object_repr": "List: complication_list_1 (en)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\", \"Text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 740,
+  "fields": {
+    "action_time": "2021-11-18T16:39:01.225Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "144",
+    "object_repr": "List: complication_list_2",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 741,
+  "fields": {
+    "action_time": "2021-11-18T16:39:33.459Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "179",
+    "object_repr": "List: complication_list_2 (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 742,
+  "fields": {
+    "action_time": "2021-11-18T16:39:50.225Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "180",
+    "object_repr": "List: complication_list_2 (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 743,
+  "fields": {
+    "action_time": "2021-11-18T16:40:46.225Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "181",
+    "object_repr": "List: complication_list_2 (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 744,
+  "fields": {
+    "action_time": "2021-11-18T16:41:11.791Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "145",
+    "object_repr": "Text: note_that",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 745,
+  "fields": {
+    "action_time": "2021-11-18T16:41:22.858Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "182",
+    "object_repr": "Text: note_that (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 746,
+  "fields": {
+    "action_time": "2021-11-18T16:41:37.213Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "183",
+    "object_repr": "Text: note_that (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 747,
+  "fields": {
+    "action_time": "2021-11-18T16:41:52.680Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "184",
+    "object_repr": "Text: note_that (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 748,
+  "fields": {
+    "action_time": "2021-11-18T16:42:05.115Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "146",
+    "object_repr": "Text: explanation_text",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 749,
+  "fields": {
+    "action_time": "2021-11-18T16:42:23.081Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "185",
+    "object_repr": "Text: explanation_text (en)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 750,
+  "fields": {
+    "action_time": "2021-11-18T16:42:37.488Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "186",
+    "object_repr": "Text: explanation_text (no)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 751,
+  "fields": {
+    "action_time": "2021-11-18T16:42:51.253Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "187",
+    "object_repr": "Text: explanation_text (fr)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 752,
+  "fields": {
+    "action_time": "2021-11-18T17:10:27.951Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "83",
+    "object_repr": "Text: button_start (en)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 753,
+  "fields": {
+    "action_time": "2021-11-18T17:13:39.895Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Text: paragraph_page1 (en)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 754,
+  "fields": {
+    "action_time": "2021-11-18T17:17:10.163Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "81",
+    "object_repr": "Text: warning_text_page_2 (en)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Belongs to\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -9597,7 +10598,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$216000$dW5KSggOSG0O$ooT6QnCYtRUw6L0maDOxyP8DiHTSmenrFrI7R4Cex8s=",
-    "last_login": "2021-05-04T16:47:51.028Z",
+    "last_login": "2021-11-17T15:21:55.333Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -9764,6 +10765,14 @@
 },
 {
   "model": "sessions.session",
+  "pk": "142ask5g97he3dk7ru1hwziigssqb58s",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSEwIA-X7vsNZHiMVA0kpV0Z_12bdKHbe865LxZwW2vYRlnCnNmFSXb63SKmR2k7yHdst85Tb-syR74r_KCDTz2X5_Vw_w4qjvqtS8xGCTI6KjAepCJPKDwogcrFRM6lrEEWtOfkIgoLpIyWRUJOBGTZ-wPhFjf3:1mnMl1:T0i-sDjH_zl5nAocBqtHCDVGFk_RZhCnGPaetKskm38",
+    "expire_date": "2021-12-01T15:21:55.336Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "1c0x2lj1p6jgxw8our6v1hajywx14faj",
   "fields": {
     "session_data": ".eJxVjMsOwiAQRf-FtSEwIA-X7vsNZHiMVA0kpV0Z_12bdKHbe865LxZwW2vYRlnCnNmFSXb63SKmR2k7yHdst85Tb-syR74r_KCDTz2X5_Vw_w4qjvqtS8xGCTI6KjAepCJPKDwogcrFRM6lrEEWtOfkIgoLpIyWRUJOBGTZ-wPhFjf3:1ldY3q:NtKW7GTev92Kn4hYTsd3fyn8t9HwbqY4dv7nAEe1upk",
@@ -9776,6 +10785,14 @@
   "fields": {
     "session_data": ".eJxVjMsOwiAQRf-FtSEwIA-X7vsNZHiMVA0kpV0Z_12bdKHbe865LxZwW2vYRlnCnNmFSXb63SKmR2k7yHdst85Tb-syR74r_KCDTz2X5_Vw_w4qjvqtS8xGCTI6KjAepCJPKDwogcrFRM6lrEEWtOfkIgoLpIyWRUJOBGTZ-wPhFjf3:1lZYkJ:BVFUMH0OuSTRL4jaOg_BzKtdT8XkBx__biu8eX966y4",
     "expire_date": "2021-05-06T12:47:51.499Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3fa1qcdy40gugxisbye5xnh6jrmygkv3",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSEwIA-X7vsNZHiMVA0kpV0Z_12bdKHbe865LxZwW2vYRlnCnNmFSXb63SKmR2k7yHdst85Tb-syR74r_KCDTz2X5_Vw_w4qjvqtS8xGCTI6KjAepCJPKDwogcrFRM6lrEEWtOfkIgoLpIyWRUJOBGTZ-wPhFjf3:1mhqBl:7DnF-aGNR3_kLiqphm9wpyFsTS-Dldbgp6ZwPuh_xUU",
+    "expire_date": "2021-11-16T09:34:41.097Z"
   }
 },
 {
@@ -10831,6 +11848,150 @@
   }
 },
 {
+  "model": "epr.content",
+  "pk": 129,
+  "fields": {
+    "name": "risk_page_title",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 130,
+  "fields": {
+    "name": "save_button",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 131,
+  "fields": {
+    "name": "saved_info",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 132,
+  "fields": {
+    "name": "see_saved_info",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 133,
+  "fields": {
+    "name": "logg_in_resultat",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 134,
+  "fields": {
+    "name": "your_risk",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 135,
+  "fields": {
+    "name": "read_more",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 136,
+  "fields": {
+    "name": "my_page",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 137,
+  "fields": {
+    "name": "sign_out_button",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 138,
+  "fields": {
+    "name": "warning_text_page_2",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 139,
+  "fields": {
+    "name": "leading_question",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 140,
+  "fields": {
+    "name": "paragraph_page1",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 141,
+  "fields": {
+    "name": "press_start",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 142,
+  "fields": {
+    "name": "intro_complication",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 143,
+  "fields": {
+    "name": "complication_list_1",
+    "content_type": "List"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 144,
+  "fields": {
+    "name": "complication_list_2",
+    "content_type": "List"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 145,
+  "fields": {
+    "name": "note_that",
+    "content_type": "Text"
+  }
+},
+{
+  "model": "epr.content",
+  "pk": 146,
+  "fields": {
+    "name": "explanation_text",
+    "content_type": "Text"
+  }
+},
+{
   "model": "epr.translation",
   "pk": 1,
   "fields": {
@@ -10871,8 +12032,8 @@
   "pk": 5,
   "fields": {
     "language_code": 1,
-    "belongs_to": 3,
-    "text": "Are you or are you planning to get pregnant? This tool can help you assess your health status for a healthy pregnancy and a complication-free birth. By filling in your personal health measurements, this tool will estimate the risk of developing common pregnancy complications. It is important to note that you should not use this information as a substitute for professional medical advice, diagnosis or treatment."
+    "belongs_to": 140,
+    "text": "This tool can help you assess your health status for a healthy pregnancy and a complication-free birth. By filling in your personal health measurements, this tool will estimate the risk of developing common pregnancy complications. It is important to note that you should not use this information as a substitute for professional medical advice, diagnosis or treatment."
   }
 },
 {
@@ -11555,7 +12716,7 @@
   "pk": 81,
   "fields": {
     "language_code": 1,
-    "belongs_to": 31,
+    "belongs_to": 138,
     "text": "It is important to note that the tool will provide you with the risk of an average woman with your health measures and NOT your personal risk score. It is also important to note that the model does not take into many other psychosocial factors affecting the mother's health."
   }
 },
@@ -11564,8 +12725,8 @@
   "pk": 82,
   "fields": {
     "language_code": 1,
-    "belongs_to": 32,
-    "text": "Miscarriage;Gestational Diabetes Mellitus;Preeclampsia;Pre-term birth;Still birth;Caesarean section;Postpartum depression"
+    "belongs_to": 143,
+    "text": "Miscarriage;Gestational Diabetes Mellitus;Preeclampsia;Pre-term birth;Still birth;Caesarean section"
   }
 },
 {
@@ -11627,7 +12788,7 @@
   "pk": 89,
   "fields": {
     "language_code": 2,
-    "belongs_to": 31,
+    "belongs_to": 138,
     "text": "Det er viktig å merke seg at dette verktøyet vil gi deg risikoen for en gjennomsnittlig kvinne med dine helsemessige tiltak og IKKE din personlige risikoscore. Det er også viktig å merke seg at modellen ikke tar inn mange andre psykososiale faktorer som også kan påvirke mors helse."
   }
 },
@@ -11636,8 +12797,8 @@
   "pk": 90,
   "fields": {
     "language_code": 2,
-    "belongs_to": 3,
-    "text": "Er du eller planlegger du å bli gravid? Dette verktøyet kan hjelpe deg l å vurdere din helsestatus for en sunn graviditet og en komplikasjonsfri fødsel. Ved å fylle ut dine personlige helsemålinger, vil dette verktøyet estimere risikoen for å utvikle vanlige graviditetskomplikasjoner. Det er viktig å merke seg at du bør ikke bruke denne informasjonen som en erstatning for profesjonell medisinsk rådgivning, diagnose eller behandling."
+    "belongs_to": 140,
+    "text": "Dette verktøyet kan hjelpe deg i å vurdere din helsestatus for en sunn graviditet og en komplikasjonsfri fødsel. Ved å fylle ut dine personlige helsemålinger, vil dette verktøyet estimere risikoen for å utvikle vanlige graviditetskomplikasjoner. Det er viktig å merke seg at du bør ikke bruke denne informasjonen som en erstatning for profesjonell medisinsk rådgivning, diagnose eller behandling."
   }
 },
 {
@@ -11645,8 +12806,8 @@
   "pk": 91,
   "fields": {
     "language_code": 2,
-    "belongs_to": 32,
-    "text": "Abort;Svangerskapsdiabetes;Svangerskapsforgiftning;For tidlig fødsel;Døfødsel;Keisersnitt;Postpartum depresjon"
+    "belongs_to": 143,
+    "text": "Spontan abort;Svangerskapsdiabetes;Svangerskapsforgiftning;For tidlig fødsel;Døfødsel;Keisersnitt"
   }
 },
 {
@@ -11681,8 +12842,8 @@
   "pk": 95,
   "fields": {
     "language_code": 3,
-    "belongs_to": 3,
-    "text": "Vous êtes enceinte ou souhaitez l’être ? Cet outil vous aidera à évaluer votre état de santé pour une grossesse et une naissance sans complications. En remplissant vos données de santé, cet outil évaluera le risque de développer des complications de grossesse courantes. Il est important de noter que vous ne devez pas utiliser ces conseils à la place de l’avis d’un professionnel de santé, comme diagnostic ou traitement."
+    "belongs_to": 140,
+    "text": "Cet outil vous aidera à évaluer votre état de santé pour une grossesse et une naissance sans complications. En remplissant vos données de santé, cet outil évaluera le risque de développer des complications de grossesse courantes. Il est important de noter que vous ne devez pas utiliser ces conseils à la place de l’avis d’un professionnel de santé, comme diagnostic ou traitement."
   }
 },
 {
@@ -11690,7 +12851,7 @@
   "pk": 96,
   "fields": {
     "language_code": 3,
-    "belongs_to": 31,
+    "belongs_to": 138,
     "text": "Il est important de noter que cet outil vous fournira le risque d’une femme moyenne avec vos mesures de santé, et NON votre résultat de risque personnel. Il est également important de noter que ce modèle ne prend pas en compte les nombreux autres facteurs psychosociaux affectant la santé d’une mère."
   }
 },
@@ -11735,8 +12896,8 @@
   "pk": 101,
   "fields": {
     "language_code": 3,
-    "belongs_to": 32,
-    "text": "Fausse-couche;Diabète gestationnel;Prééclampsie;Naissance prématurée;Mort-né;Césarienne;Dépression du post-partum"
+    "belongs_to": 143,
+    "text": "Fausse couche;Diabète Gestationnel;Prééclampsie;Naissance Prématurée;Naissance Morte;Césarienne"
   }
 },
 {
@@ -11989,6 +13150,411 @@
     "language_code": 3,
     "belongs_to": 128,
     "text": "Précédent"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 143,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 129,
+    "text": "Your calculated risk"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 144,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 129,
+    "text": "Din kalkulerte risk"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 145,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 129,
+    "text": "Votre risque calculé"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 146,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 130,
+    "text": "Save results"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 147,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 130,
+    "text": "Lagre resultat"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 148,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 130,
+    "text": "Sauvegarder le résultat"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 149,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 131,
+    "text": "Click here to save your results."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 150,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 131,
+    "text": "Klikk her for å lagre resultatene dine."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 151,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 131,
+    "text": "Cliquez ici pour sauvegarder vos résultats."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 152,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 132,
+    "text": "Saved. You can see your results on My Page."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 153,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 132,
+    "text": "Lagret. Du kan se dine resultater på din side."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 154,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 132,
+    "text": "Sauvegardé. Vous pouvez voir vos résultats sur Ma page."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 155,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 133,
+    "text": "Log in to save your results."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 156,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 133,
+    "text": "Logg inn for å lagre resultatene dine."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 157,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 133,
+    "text": "Connectez-vous pour enregistrer vos résultats."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 158,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 134,
+    "text": "Your risk of getting this complication is"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 159,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 134,
+    "text": "Din risiko for å få denne komplikasjonen er"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 160,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 134,
+    "text": "Votre risque de souffrir de cette complication est de"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 161,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 135,
+    "text": "Click here to read more about this complication."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 162,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 135,
+    "text": "Trykk her for å lese mer om denne komplikasjonen."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 163,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 135,
+    "text": "Cliquez ici pour en savoir plus sur cette complication."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 164,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 136,
+    "text": "My page"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 165,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 136,
+    "text": "Min side"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 166,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 136,
+    "text": "Ma page"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 167,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 137,
+    "text": "Sign out"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 168,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 137,
+    "text": "Logg ut"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 169,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 137,
+    "text": "Déconnexion"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 170,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 139,
+    "text": "Are you pregnant or planning to get pregnant?"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 171,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 139,
+    "text": "Er du eller planlegger du å bli gravid?"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 172,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 139,
+    "text": "Vous êtes enceinte ou souhaitez l’être ?"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 173,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 141,
+    "text": "To read more about the calculation and proceed to test, press Start."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 174,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 141,
+    "text": "For å lese mer om kalkulasjonen vi bruker, og å ta testen, trykk Start."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 175,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 141,
+    "text": "Pour en savoir plus sur le calcul et procéder au test, appuyez sur Commencer l’Évaluation."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 176,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 142,
+    "text": "The different complications assessed in the test:"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 177,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 142,
+    "text": "De forskjellige komplikasjonene som blir vurdert i testen:"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 178,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 142,
+    "text": "Les différentes complications évaluées lors du test :"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 179,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 144,
+    "text": "Postpartum depression;Placental Abruption;Placenta Praevia;Thrombosis;Hyperemesis Gravidarum;Antepartum Haemorrhage"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 180,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 144,
+    "text": "Postpartum depresjon;Placental Abruption;Placenta Praevia;Trombose;Hyperemesis Gravidarum;Antepartum blødning"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 181,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 144,
+    "text": "Dépression Post-Partum;Décollement du Placenta;Placenta Praevia;Thrombose;Hyperémèse Gravidique;Hémorragie Antepartum"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 182,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 145,
+    "text": "Please note that:"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 183,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 145,
+    "text": "Vær oppmerksom på at:"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 184,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 145,
+    "text": "Veuillez noter que :"
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 185,
+  "fields": {
+    "language_code": 1,
+    "belongs_to": 146,
+    "text": "If you prefer not to answer a question, please press skip. Note: This could affect the risk calculation."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 186,
+  "fields": {
+    "language_code": 2,
+    "belongs_to": 146,
+    "text": "Hvis du foretrekker å ikke svare på et spørsmål, vennligst trykk på “Hopp over”.  Merk: Dette kan påvirke risikoberegningen."
+  }
+},
+{
+  "model": "epr.translation",
+  "pk": 187,
+  "fields": {
+    "language_code": 3,
+    "belongs_to": 146,
+    "text": "Si vous préférez ne pas répondre à une question, veuillez appuyer sur “Passer”. Remarque : Cela pourrait affecter le calcul du risque."
   }
 },
 {
