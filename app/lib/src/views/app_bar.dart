@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:app/src/auth/auth_service.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:provider/src/provider.dart';
+import 'package:app/src/views/main_screen.dart';
 
 AppBar topBar(BuildContext context, AuthService authService) => AppBar(
       toolbarHeight: 75,
@@ -13,13 +14,34 @@ AppBar topBar(BuildContext context, AuthService authService) => AppBar(
           padding: EdgeInsets.only(left: 10),
           child: Align(
               alignment: Alignment(0, 0),
-              child:
-                  Image.asset('assets/images/EPR.png', fit: BoxFit.fitHeight))),
+              child: IconButton(
+                  icon: Image.asset('assets/images/EPR.png',
+                      fit: BoxFit.fitHeight),
+                  iconSize: 50,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MainScreen()));
+                  }))),
+      //Image.asset('assets/images/EPR.png', fit: BoxFit.fitHeight))),
       title: Align(
-        alignment: Alignment.centerLeft,
-        child: Text("Early Pregnancy Risk",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-      ),
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              //padding: const EdgeInsets.all(16.0),
+              primary: Colors.black,
+              textStyle:
+                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MainScreen()));
+            },
+            child: Text("Early Pregnancy Risk"),
+          )
+
+          //Text("Early Pregnancy Risk",
+          //    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ),
       actions: [
         if (authService.status == Status.Unauthenticated)
           Align(

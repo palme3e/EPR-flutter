@@ -65,6 +65,38 @@ class _FactorsState extends State<Factors> {
     });
   }
 
+  int get_int_input_maxlength(Map question) {
+    if (question["factor"] == "age") {
+      return 2;
+    }
+    if (question["factor"] == "height") {
+      return 3;
+    }
+    if (question["factor"] == "parity") {
+      return 1;
+    }
+    if (question["factor"] == "weight") {
+      return 2;
+    }
+    return 1;
+  }
+
+  String get_int_input_label(Map question) {
+    if (question["factor"] == "age") {
+      return "Years";
+    }
+    if (question["factor"] == "height") {
+      return "In cm";
+    }
+    if (question["factor"] == "parity") {
+      return " ";
+    }
+    if (question["factor"] == "weight") {
+      return "In kg";
+    }
+    return " ";
+  }
+
   @override
   void initState() {
     super.initState();
@@ -84,88 +116,222 @@ class _FactorsState extends State<Factors> {
     });
   }
 
-  // Map<String, dynamic> answers = {};
-  // update_answer(factor_name, result) {
-  //   String temp = factor_name["factor"];
-  //   answers[temp] = result;
-  // }
-
-  // get_answers() {
-  //   return answers;
-  // }
-
+  int valueInt = 0;
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
-      appBar: topBar(context, authService),
-      body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(
-            _questions.length > 0
-                ? _questions[_indexQuestion]["question"]
-                : " ",
-            style: TextStyle(fontSize: 25, color: color.darkblue)),
-        _questions.length > 0
-            ? Center(
-                child: (check_factor_type(
-                        _questions[_indexQuestion])) //bool = true
-                    ? Row(children: [
-                        Spacer(),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            primary: Colors.blue,
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            (update_answer(_questions[_indexQuestion], false));
-                            (_next());
-                          },
-                          child: Text(_texts.length > 0
-                              ? _texts["button_no"]
-                              : "Default no"),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(16.0),
-                            primary: Colors.blue,
-                            textStyle: const TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            (update_answer(_questions[_indexQuestion], true));
-                            (_next());
-                          },
-                          child: Text(_texts.length > 0
-                              ? _texts["button_yes"]
-                              : "Default yes"),
-                        ),
-                        Spacer()
-                      ])
-                    : TextButton(
-                        style: TextButton.styleFrom(
-                          //padding: const EdgeInsets.all(16.0),
-                          primary: Colors.blue,
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        onPressed: () {
-                          (update_answer(_questions[_indexQuestion],
-                              9)); //TODO fix number and textfield
-                          (_next());
-                        },
-                        child: (Text("Int"))))
-            : Loading()
-      ])),
-      floatingActionButton: TextButton(
-        style: TextButton.styleFrom(
-          //padding: const EdgeInsets.all(16.0),
-          primary: Colors.blue,
-          textStyle: const TextStyle(fontSize: 20),
-        ),
-        onPressed: () {
-          (_next());
-        },
-        child: Text(_texts.length > 0 ? _texts["button_skip"] : "Default skip"),
-      ),
-    );
+        appBar: topBar(context, authService),
+        body: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(
+              _questions.length > 0
+                  ? _questions[_indexQuestion]["question"]
+                  : " ",
+              style: TextStyle(fontSize: 25, color: color.darkblue)),
+          _questions.length > 0
+              ? Column(children: [
+                  Center(
+                      child: (check_factor_type(
+                              _questions[_indexQuestion])) //bool = true
+                          ? Row(children: [
+                              Spacer(),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  primary: Colors.blue,
+                                  textStyle: const TextStyle(fontSize: 20),
+                                ),
+                                onPressed: () {
+                                  (update_answer(
+                                      _questions[_indexQuestion], false));
+                                  (_next());
+                                },
+                                child: Text(_texts.length > 0
+                                    ? _texts["button_no"]
+                                    : "Default no"),
+                              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.all(16.0),
+                                  primary: Colors.blue,
+                                  textStyle: const TextStyle(fontSize: 20),
+                                ),
+                                onPressed: () {
+                                  (update_answer(
+                                      _questions[_indexQuestion], true));
+                                  (_next());
+                                },
+                                child: Text(_texts.length > 0
+                                    ? _texts["button_yes"]
+                                    : "Default yes"),
+                              ),
+                              Spacer()
+                            ])
+                          : Container(
+                              width: 200,
+                              padding: const EdgeInsets.all(40.0),
+                              child: new Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    new TextFormField(
+                                        maxLength: get_int_input_maxlength(
+                                            _questions[_indexQuestion]),
+                                        decoration: new InputDecoration(
+                                            labelText: get_int_input_label(
+                                                _questions[_indexQuestion])),
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: <TextInputFormatter>[
+                                          FilteringTextInputFormatter.digitsOnly
+                                        ],
+                                        onChanged: (value) {
+                                          setState(() {
+                                            valueInt = int.parse(value);
+                                          });
+                                        }),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        padding: const EdgeInsets.all(16.0),
+                                        primary: Colors.blue,
+                                        textStyle:
+                                            const TextStyle(fontSize: 20),
+                                      ),
+                                      onPressed: () {
+                                        (update_answer(
+                                            _questions[_indexQuestion],
+                                            valueInt));
+                                        (_next());
+                                      },
+                                      child: Text(_texts.length > 0
+                                          ? _texts["button_continue"]
+                                          : "Default continue"),
+                                    )
+                                  ]))),
+                  // Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  //   OutlinedButton(
+                  //     style: ButtonStyle(
+                  //       backgroundColor: MaterialStateProperty.all<Color>(
+                  //           Colors.transparent),
+                  //       foregroundColor:
+                  //           MaterialStateProperty.all<Color>(Colors.black),
+                  //       shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(30.0))),
+                  //     ),
+                  //     onPressed: () {
+                  //       print("hei");
+                  //     },
+                  //     child: const Text('Previous'),
+                  //   ),
+                  //   Padding(
+                  //       padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                  //       child: OutlinedButton(
+                  //           style: ButtonStyle(
+                  //             backgroundColor: MaterialStateProperty.all<Color>(
+                  //                 Colors.transparent),
+                  //             foregroundColor: MaterialStateProperty.all<Color>(
+                  //                 Colors.black),
+                  //             shape: MaterialStateProperty.all(
+                  //                 RoundedRectangleBorder(
+                  //                     borderRadius:
+                  //                         BorderRadius.circular(30.0))),
+                  //           ),
+                  //           onPressed: () {
+                  //             print("hei");
+                  //           },
+                  //           child: const Text('Skip')))
+                  // ])
+                  // Row(mainAxisAlignment: MainAxisAlignment.center,
+                  //     //crossAxisAlignment: CrossAxisAlignment.center,
+                  //     children: [
+                  //       TextButton(
+                  //           style: TextButton.styleFrom(
+                  //             padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  //             primary: Colors.grey,
+                  //             textStyle: const TextStyle(fontSize: 20),
+                  //           ),
+                  //           onPressed: () {
+                  //             (_next());
+                  //           },
+                  //           child: Text(_texts.length > 0
+                  //               ? _texts["button_previous"]
+                  //               : "Default previous")),
+                  //       TextButton(
+                  //         style: TextButton.styleFrom(
+                  //           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  //           primary: Colors.grey,
+                  //           textStyle: const TextStyle(fontSize: 20),
+                  //         ),
+                  //         onPressed: () {
+                  //           (_next());
+                  //         },
+                  //         child: Text(_texts.length > 0
+                  //             ? _texts["button_skip"]
+                  //             : "Default skip"),
+                  //       ),
+                  //     ])
+                ])
+              : Loading()
+        ])),
+        floatingActionButton:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Padding(
+              padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+              child: OutlinedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.transparent),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.black),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0))),
+                ),
+                onPressed: () {
+                  print("hei");
+                },
+                child: const Text('Previous'),
+              )),
+          Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: OutlinedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.transparent),
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black),
+                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0))),
+                  ),
+                  onPressed: () {
+                    print("hei");
+                  },
+                  child: const Text('Skip')))
+        ])
+        //     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        //   TextButton(
+        //       style: TextButton.styleFrom(
+        //         padding: const EdgeInsets.fromLTRB(40, 0, 0, 10),
+        //         primary: Colors.blue,
+        //         textStyle: const TextStyle(fontSize: 20),
+        //       ),
+        //       onPressed: () {
+        //         (_next());
+        //       },
+        //       child: Text(_texts.length > 0
+        //           ? _texts["button_previous"]
+        //           : "Default previous")),
+        //   TextButton(
+        //     style: TextButton.styleFrom(
+        //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+        //       primary: Colors.blue,
+        //       textStyle: const TextStyle(fontSize: 20),
+        //     ),
+        //     onPressed: () {
+        //       (_next());
+        //     },
+        //     child: Text(
+        //         _texts.length > 0 ? _texts["button_skip"] : "Default skip"),
+        //   ),
+        // ])
+        );
   }
 }
