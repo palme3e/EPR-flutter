@@ -15,51 +15,84 @@ import 'package:url_launcher/url_launcher.dart';
 
 //var factors = affecting.get_affecting_factors(comps)
 
-Column bullet_list(comps) => Column(children: [
-      Text("Factors that may affect your result:"),
-      //Text(affecting.get_affecting_factors(comps["complication"]).toString())
-      affecting.get_affecting_factors(comps["complication"]).length > 0
-          ? Column(
-              children: [
-                Text("Changable factors"),
-                for (var i = 0;
-                    i <
-                        affecting
-                            .get_affecting_factors(comps["complication"])[0]
-                            .length;
-                    i++)
-                  Row(
-                    children: [
-                      Text("• "),
-                      Expanded(
-                          child: Text(
-                        affecting
-                            .get_affecting_factors(comps["complication"])[0][i]
-                            .toString(),
-                        style: TextStyle(fontSize: 10),
+Column bullet_list(comps) =>
+    Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      Text("Factors that may affect your result:",
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+      affecting.get_affecting_factors(comps["complication"]).length > 0 &&
+              affecting.get_affecting_factors(comps["complication"])[1].length >
+                  0
+          ? Column(children: [
+              affecting.get_affecting_factors(comps["complication"])[0].length >
+                      0
+                  ? Text("Changable factors",
+                      style: TextStyle(
+                        fontSize: 12,
+                        decoration: TextDecoration.underline,
                       ))
-                    ],
-                  ),
-                Text("Non-changable factors"),
-                for (var i = 0;
-                    i <
-                        affecting
-                            .get_affecting_factors(comps["complication"])[1]
-                            .length;
-                    i++)
-                  Row(
-                    children: [
-                      Text("• "),
-                      Expanded(
-                          child: Text(
-                        affecting
-                            .get_affecting_factors(comps["complication"])[1][i]
-                            .toString(),
-                        style: TextStyle(fontSize: 10),
+                  : Text(" "),
+              affecting.get_affecting_factors(comps["complication"])[0].length >
+                      0
+                  ? Column(children: [
+                      for (var i = 0;
+                          i <
+                              affecting
+                                  .get_affecting_factors(
+                                      comps["complication"])[0]
+                                  .length;
+                          i++)
+                        Row(
+                          children: [
+                            Spacer(),
+                            Text("• ", style: TextStyle(fontSize: 12)),
+                            Expanded(
+                                child: Text(
+                              affecting
+                                  .get_affecting_factors(
+                                      comps["complication"])[0][i]
+                                  .toString(),
+                              style: TextStyle(fontSize: 12),
+                            )),
+                            Spacer(),
+                          ],
+                        ),
+                    ])
+                  : Text(" "),
+              affecting.get_affecting_factors(comps["complication"])[1].length >
+                      0
+                  ? Text("Non-changable factors",
+                      style: TextStyle(
+                        fontSize: 12,
+                        decoration: TextDecoration.underline,
                       ))
-                    ],
-                  )
-              ],
-            )
+                  : Text(" "),
+              affecting.get_affecting_factors(comps["complication"])[1].length >
+                      0
+                  ? Column(children: [
+                      for (var i = 0;
+                          i <
+                              affecting
+                                  .get_affecting_factors(
+                                      comps["complication"])[1]
+                                  .length;
+                          i++)
+                        Row(
+                          children: [
+                            Spacer(),
+                            Text("• ", style: TextStyle(fontSize: 12)),
+                            Expanded(
+                                child: Text(
+                              affecting
+                                  .get_affecting_factors(
+                                      comps["complication"])[1][i]
+                                  .toString(),
+                              style: TextStyle(fontSize: 12),
+                            )),
+                            Spacer(),
+                          ],
+                        )
+                    ])
+                  : Text(" ")
+            ])
           : Loading()
     ]);

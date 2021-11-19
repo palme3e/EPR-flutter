@@ -91,7 +91,7 @@ const List<List<String>> HyperemesisGravidarum = [
   ]
 ];
 const List<List<String>> AntepartumHaemorrhage = [
-  [""],
+  [],
   [
     "Age",
     "Family history of G6PD",
