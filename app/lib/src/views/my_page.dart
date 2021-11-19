@@ -1,6 +1,5 @@
 import 'package:app/src/auth/auth_service.dart';
 import 'package:app/src/views/app_bar.dart';
-import 'package:app/src/views/components/bullet_point_factor.dart';
 import 'package:app/src/views/components/result_expansion.dart';
 import 'package:app/src/views/loading.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/src/networking/requests.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'Style/colors.dart' as color;
 import 'package:app/src/networking/constants/links.dart' as link;
 
 class MyPage extends StatefulWidget {
@@ -125,9 +123,6 @@ class _MyPageState extends State<MyPage> {
                                   child:
                         _results.length > 0
                             ? Column(children: [
-                              Text("Results",
-                              style: TextStyle(color: Colors.black,
-                                                fontSize: 16),),
                                 for (var i = 0; i < _results.length; i++)
                                   Padding(padding: EdgeInsets.fromLTRB(0, 1, 0, 1), 
                                   child: OutlinedButton(
