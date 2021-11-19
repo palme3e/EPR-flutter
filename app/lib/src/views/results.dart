@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:app/src/networking/constants/links.dart' as link;
+import 'package:app/src/views/components/bullet_point_factor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Results extends StatefulWidget {
@@ -229,6 +230,8 @@ class _ResultsState extends State<Results> {
                                                                       .black,
                                                                   fontSize: 16),
                                                             )),
+                                                        //HER
+                                                        bullet_list(_result[i]),
                                                         Padding(
                                                           padding:
                                                               EdgeInsets.all(
