@@ -115,7 +115,13 @@ class _MyPageState extends State<MyPage> {
                         ))
                     : Loading(),
                 _results.length > 0
-                    ? Row(children: [
+                    ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                                  flex: 1,
+                                  child:
                         _results.length > 0
                             ? Column(children: [
                                 for (var i = 0; i < _results.length; i++)
@@ -136,114 +142,130 @@ class _MyPageState extends State<MyPage> {
                                         .toString()),
                                   ),
                               ])
-                            : Loading(),
+                        : Loading()
+                        ),
 //MELLOM HER
-
-                        result_shown.length > 1
+                        Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                      child:
+                        result_shown.length > 0
                             ? Column(children: [
                                 for (var i = 0; i < result_shown.length; i++)
-                                  Row(children: [
-                                    Text(
-                                      result_shown[i]["complication"]
-                                          .toString(),
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                    Text(
-                                      result_shown[i]["severity_str"]
-                                          .toString(),
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                    Text(
-                                      _texts["your_risk"] +
-                                          " " +
-                                          result_shown[i]["risk_percent"]
-                                              .toString() +
-                                          "%",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 16),
-                                    )
-                                  ])
-
-                                //     ExpansionPanelList(
-                                //         expansionCallback:
-                                //             (panelIndex, isExpanded) {
-                                //           active[i] = !active[i];
-                                //           setState(() {});
-                                //         },
-                                //         children: <ExpansionPanel>[
-                                //           ExpansionPanel(
-                                //               headerBuilder:
-                                //                   (context, isExpanded) {
-                                //                 return Row(children: [
-                                //                   Padding(
-                                //                     padding: EdgeInsets.fromLTRB(
-                                //                         30, 20, 15, 20),
-                                //                     child: Text(
-                                //                         result_shown[i][
-                                //                                 "complication"] //ici
-                                //                             .toString(),
-                                //                         style: TextStyle(
-                                //                             color: Colors.black,
-                                //                             fontSize: 16),
-                                //                         textAlign:
-                                //                             TextAlign.start),
-                                //                   ),
-                                //                   Text(
-                                //                       result_shown[i]
-                                //                               ["severity_str"]
-                                //                           .toString(),
-                                //                       style: TextStyle(
-                                //                           color: color.risk_color(
-                                //                               result_shown[i][
-                                //                                       "severity_str"]
-                                //                                   .toString()),
-                                //                           fontSize: 15),
-                                //                       textAlign: TextAlign.center)
-                                //                 ]);
-                                //               },
-                                //               body: Wrap(
-                                //                 alignment:
-                                //                     WrapAlignment.spaceBetween,
-                                //                 spacing: 7,
-                                //                 children: [
-                                //                   Padding(
-                                //                       padding: EdgeInsets.all(20),
-                                //                       child: Text(
-                                //                         _texts["your_risk"] +
-                                //                             " " +
-                                //                             result_shown[i][
-                                //                                     "risk_percent"]
-                                //                                 .toString() +
-                                //                             "%",
-                                //                         style: TextStyle(
-                                //                             color: Colors.black,
-                                //                             fontSize: 16),
-                                //                       )),
-                                //                   Padding(
-                                //                     padding: EdgeInsets.all(20),
-                                //                     child: TextButton(
-                                //                       style: TextButton.styleFrom(
-                                //                         primary: Colors.blue,
-                                //                         textStyle: TextStyle(
-                                //                             color: Colors.black,
-                                //                             fontSize: 16),
-                                //                       ),
-                                //                       onPressed: () {
-                                //                         _launch_URL(
-                                //                             result_shown[i]
-                                //                                 ["complication"]);
-                                //                       },
-                                //                       child: Text(
-                                //                           _texts["read_more"]),
-                                //                     ),
-                                //                   )
-                                //                 ],
-                                //               ),
-                                //               isExpanded: active[i],
-                                //               canTapOnHeader: true)
-                                //         ])
+                                  ExpansionPanelList(
+                                              expansionCallback:
+                                                  (panelIndex, isExpanded) {
+                                                active[i] = !active[i];
+                                                setState(() {});
+                                              },
+                                              children: <ExpansionPanel>[
+                                                ExpansionPanel(
+                                                    headerBuilder:
+                                                        (context, isExpanded) {
+                                                      return Row(children: [
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .fromLTRB(30, 20,
+                                                                  15, 20),
+                                                          child: Text(
+                                                              result_shown[i][
+                                                                      "complication"] //ici
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start),
+                                                        ),
+                                                        Text(
+                                                            result_shown[i][
+                                                                    "severity_str"]
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                color: color.risk_color(
+                                                                    result_shown[i][
+                                                                            "severity_str"]
+                                                                        .toString()),
+                                                                fontSize: 15),
+                                                            textAlign: TextAlign
+                                                                .center)
+                                                      ]);
+                                                    },
+                                                    body: Wrap(
+                                                      alignment: WrapAlignment
+                                                          .spaceBetween,
+                                                      spacing: 7,
+                                                      children: [
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    20),
+                                                            child: Text(
+                                                              _texts["your_risk"] +
+                                                                  " " +
+                                                                  result_shown[i][
+                                                                          "risk_percent"]
+                                                                      .toString() +
+                                                                  "%",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                            )),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  20),
+                                                          child: TextButton(
+                                                            style: TextButton
+                                                                .styleFrom(
+                                                              primary:
+                                                                  Colors.blue,
+                                                              textStyle: TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 16),
+                                                            ),
+                                                            onPressed: () {
+                                                              _launch_URL(result_shown[i][
+                                                                  "complication"]);
+                                                            },
+                                                            child: Text(_texts[
+                                                                "read_more"]),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    isExpanded: active[i],
+                                                    canTapOnHeader: true)
+                                              ])
+                                  // Row(children: [
+                                  //   Text(
+                                  //     result_shown[i]["complication"]
+                                  //         .toString(),
+                                  //     style: TextStyle(fontSize: 15),
+                                  //   ),
+                                  //   Text(
+                                  //     result_shown[i]["severity_str"]
+                                  //         .toString(),
+                                  //     style: TextStyle(fontSize: 15),
+                                  //   ),
+                                  //   Text(
+                                  //     _texts["your_risk"] +
+                                  //         " " +
+                                  //         result_shown[i]["risk_percent"]
+                                  //             .toString() +
+                                  //         "%",
+                                  //     style: TextStyle(
+                                  //         color: Colors.black, fontSize: 16),
+                                  //   )
+                                  // ])
                               ])
-                            : Text("Choose a date to see results from")
+                            : Text("Choose a date to see results from.", style: TextStyle(fontSize: 15))
+                        ))
 //OG HER
                       ])
                     : Loading()
