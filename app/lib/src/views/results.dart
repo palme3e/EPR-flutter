@@ -1,3 +1,5 @@
+import 'package:app/src/views/components/result_expansion.dart';
+
 import '../networking/requests.dart' as request;
 import 'factors.dart' as result;
 import 'package:app/src/auth/auth_service.dart';
@@ -175,113 +177,7 @@ class _ResultsState extends State<Results> {
                                                 setState(() {});
                                               },
                                               children: <ExpansionPanel>[
-                                                ExpansionPanel(
-                                                    headerBuilder:
-                                                        (context, isExpanded) {
-                                                      return Row(children: [
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .fromLTRB(30, 20,
-                                                                  15, 20),
-                                                          child: Text(
-                                                              _result[i][
-                                                                      "complication"]
-                                                                  .toString(),
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 16),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start),
-                                                        ),
-                                                        Text(
-                                                            _result[i][
-                                                                    "severity_str"]
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                color: color.risk_color(
-                                                                    _result[i][
-                                                                            "severity_str"]
-                                                                        .toString()),
-                                                                fontSize: 15),
-                                                            textAlign: TextAlign
-                                                                .center)
-                                                      ]);
-                                                    },
-                                                    body: Wrap(
-                                                      alignment:
-                                                          WrapAlignment.start,
-                                                      spacing: 0,
-                                                      children: [
-                                                        Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(0, 0,
-                                                                    200, 0),
-                                                            child: Column(
-                                                                children: [
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .fromLTRB(
-                                                                              0,
-                                                                              20,
-                                                                              20,
-                                                                              20),
-                                                                      child:
-                                                                          Text(
-                                                                        _texts["your_risk"] +
-                                                                            " " +
-                                                                            _result[i]["risk_percent"].toString() +
-                                                                            "%",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontSize: 16),
-                                                                      )),
-                                                                  Padding(
-                                                                      padding: EdgeInsets
-                                                                          .fromLTRB(
-                                                                              0,
-                                                                              0,
-                                                                              100,
-                                                                              0),
-                                                                      child: bullet_list(
-                                                                          _result[
-                                                                              i])),
-                                                                  Padding(
-                                                                    padding: EdgeInsets
-                                                                        .fromLTRB(
-                                                                            0,
-                                                                            20,
-                                                                            20,
-                                                                            20),
-                                                                    child:
-                                                                        TextButton(
-                                                                      style: TextButton
-                                                                          .styleFrom(
-                                                                        primary:
-                                                                            Colors.blue,
-                                                                        textStyle: TextStyle(
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontSize: 16),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        _launch_URL(_result[i]
-                                                                            [
-                                                                            "complication"]);
-                                                                      },
-                                                                      child: Text(
-                                                                          _texts[
-                                                                              "read_more"]),
-                                                                    ),
-                                                                  )
-                                                                ]))
-                                                      ],
-                                                    ),
-                                                    isExpanded: active[i],
-                                                    canTapOnHeader: true)
+                                                panelExpansion(active, _result, _texts, i, _launch_URL)
                                               ])
                                       ]))),
                               Expanded(
