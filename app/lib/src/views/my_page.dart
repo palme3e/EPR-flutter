@@ -124,23 +124,37 @@ class _MyPageState extends State<MyPage> {
                                   child:
                         _results.length > 0
                             ? Column(children: [
+                              Text("Results",
+                              style: TextStyle(color: Colors.black,
+                                                fontSize: 16),),
                                 for (var i = 0; i < _results.length; i++)
-                                  TextButton(
-                                    style: TextButton.styleFrom(
-                                      primary: Colors.black,
-                                      textStyle: TextStyle(fontSize: 20),
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
+                                  Padding(padding: EdgeInsets.fromLTRB(0, 1, 0, 1), 
+                                  child: OutlinedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.lightBlueAccent),
+                                        foregroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                Colors.black),
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0))),
+                                      ),
+                                      onPressed: () {
+                                          setState(() {
                                         result_shown =
                                             _results.reversed.toList()[i].values.toList()[0];
                                       });
-                                    },
-                                    child: Text(_results.reversed.toList()[i]
-                                        .keys
+                                        } 
+                                      ,
+                                      child: Text(_results.reversed.toList()[i]                                        .keys
                                         .toList()[0]
-                                        .toString()),
-                                  ),
+                                        .toString()
+                                        .substring(0,16)),
+                                  )),
                               ])
                         : Loading()
                         ),
