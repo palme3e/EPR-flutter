@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:app/src/networking/constants/links.dart' as link;
+import 'package:app/src/views/components/bullet_point_factor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Results extends StatefulWidget {
@@ -184,7 +185,7 @@ class _ResultsState extends State<Results> {
                                                                   15, 20),
                                                           child: Text(
                                                               _result[i][
-                                                                      "complication"] //ici
+                                                                      "complication"]
                                                                   .toString(),
                                                               style: TextStyle(
                                                                   color: Colors
@@ -209,49 +210,74 @@ class _ResultsState extends State<Results> {
                                                       ]);
                                                     },
                                                     body: Wrap(
-                                                      alignment: WrapAlignment
-                                                          .spaceBetween,
-                                                      spacing: 7,
+                                                      alignment:
+                                                          WrapAlignment.start,
+                                                      spacing: 0,
                                                       children: [
                                                         Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    20),
-                                                            child: Text(
-                                                              _texts["your_risk"] +
-                                                                  " " +
-                                                                  _result[i][
-                                                                          "risk_percent"]
-                                                                      .toString() +
-                                                                  "%",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 16),
-                                                            )),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  20),
-                                                          child: TextButton(
-                                                            style: TextButton
-                                                                .styleFrom(
-                                                              primary:
-                                                                  Colors.blue,
-                                                              textStyle: TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 16),
-                                                            ),
-                                                            onPressed: () {
-                                                              _launch_URL(_result[
-                                                                      i][
-                                                                  "complication"]);
-                                                            },
-                                                            child: Text(_texts[
-                                                                "read_more"]),
-                                                          ),
-                                                        )
+                                                            padding: EdgeInsets
+                                                                .fromLTRB(0, 0,
+                                                                    200, 0),
+                                                            child: Column(
+                                                                children: [
+                                                                  Padding(
+                                                                      padding: EdgeInsets
+                                                                          .fromLTRB(
+                                                                              0,
+                                                                              20,
+                                                                              20,
+                                                                              20),
+                                                                      child:
+                                                                          Text(
+                                                                        _texts["your_risk"] +
+                                                                            " " +
+                                                                            _result[i]["risk_percent"].toString() +
+                                                                            "%",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize: 16),
+                                                                      )),
+                                                                  Padding(
+                                                                      padding: EdgeInsets
+                                                                          .fromLTRB(
+                                                                              0,
+                                                                              0,
+                                                                              100,
+                                                                              0),
+                                                                      child: bullet_list(
+                                                                          _result[
+                                                                              i])),
+                                                                  Padding(
+                                                                    padding: EdgeInsets
+                                                                        .fromLTRB(
+                                                                            0,
+                                                                            20,
+                                                                            20,
+                                                                            20),
+                                                                    child:
+                                                                        TextButton(
+                                                                      style: TextButton
+                                                                          .styleFrom(
+                                                                        primary:
+                                                                            Colors.blue,
+                                                                        textStyle: TextStyle(
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize: 16),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        _launch_URL(_result[i]
+                                                                            [
+                                                                            "complication"]);
+                                                                      },
+                                                                      child: Text(
+                                                                          _texts[
+                                                                              "read_more"]),
+                                                                    ),
+                                                                  )
+                                                                ]))
                                                       ],
                                                     ),
                                                     isExpanded: active[i],
