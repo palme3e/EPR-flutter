@@ -2,10 +2,6 @@ import 'package:app/src/auth/auth_service.dart';
 import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/login.dart';
 import 'package:app/src/views/main_screen.dart';
-import 'package:app/src/views/screen_2.dart';
-import 'package:app/src/views/factors.dart';
-import 'package:app/src/views/factors.dart';
-import 'package:app/src/views/my_page.dart';
 import 'package:app/src/views/results.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +16,7 @@ class Navigation extends StatelessWidget {
           if (authService.status == Status.Authenticated)
             MaterialPage(
               key: ValueKey<String>('main'),
-              child: MainScreen(),
+              child: Results(),
             ),
           if (authService.status == Status.Unauthenticated ||
               authService.status == Status.Fail ||
@@ -28,6 +24,7 @@ class Navigation extends StatelessWidget {
             MaterialPage(
               key: ValueKey<String>('public'),
               child: MainScreen(), //change later
+
             ),
           if (authService.status == Status.Fail ||
               authService.status == Status.Login)
