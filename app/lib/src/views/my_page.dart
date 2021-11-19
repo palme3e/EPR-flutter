@@ -1,13 +1,17 @@
 import 'package:app/src/auth/auth_service.dart';
 import 'package:app/src/views/app_bar.dart';
-import 'package:app/src/views/factors.dart';
+import 'package:app/src/views/loading.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:app/src/views/loading.dart';
+import 'package:app/src/networking/requests.dart';
+import 'package:app/src/views/components/lang_buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'Style/colors.dart' as color;
+import 'package:app/src/networking/constants/links.dart' as link;
 
 class MyPage extends StatefulWidget {
   @override
@@ -15,6 +19,17 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  var _texts = new Map<String, String>();
+
+  var result_shown = [];
+
+  get_texts() async {
+    Map<String, String> temp = await get_translation(get_current_language());
+    setState(() {
+      _texts = temp;
+    });
+  }
+
   read_from_firebase() async {
     List results = [];
     var firebaseUser = FirebaseAuth.instance.currentUser;
@@ -31,6 +46,7 @@ class _MyPageState extends State<MyPage> {
         .get()
         .then((query_snapshot) {
       for (var doc in query_snapshot.docs) {
+        //print(doc.data().toString());
         results.add(doc.data());
       }
     });
@@ -45,28 +61,228 @@ class _MyPageState extends State<MyPage> {
     });
   }
 
+  _launch_URL(String complication) async {
+    complication = complication.replaceAll(' ', '');
+    complication = complication.replaceAll('-', '');
+
+    var url = link.get_url(complication);
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  List<bool> active = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+
   @override
   void initState() {
     super.initState();
     get_db_info();
+    get_texts();
   }
 
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
     return Scaffold(
-      appBar: topBar(context, authService),
-      body: _results.length > 0
-          ? Row(children: [
-              Text("My Page",
-                  style: TextStyle(color: Colors.black, fontSize: 15)),
-              Text(_results[0].keys.toList()[0].toString(),
-                  style: TextStyle(color: Colors.black, fontSize: 20)),
-            ])
-          : Loading(),
-      floatingActionButton: TextButton(
+        appBar: topBar(context, authService),
+        body: SingleChildScrollView(
+            child: Column(children: [
+          Padding(
+              padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+              child: Column(children: [
+                _texts.length > 0
+                    ? Padding(
+                        padding: EdgeInsets.all(25),
+                        child: Text(
+                          _texts["my_page"],
+                          style: TextStyle(color: Colors.black, fontSize: 30),
+                        ))
+                    : Loading(),
+                _results.length > 0
+                    ? Row(children: [
+                        _results.length > 0
+                            ? Column(children: [
+                                for (var i = 0; i < _results.length; i++)
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.black,
+                                      textStyle: TextStyle(fontSize: 20),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        result_shown =
+                                            _results[i].values.toList()[0];
+                                      });
+                                    },
+                                    child: Text(_results[i]
+                                        .keys
+                                        .toList()[0]
+                                        .toString()),
+                                  ),
+                              ])
+                            : Loading(),
+//MELLOM HER
+
+                        result_shown.length > 1
+                            ? Column(children: [
+                                for (var i = 0; i < result_shown.length; i++)
+                                  Row(children: [
+                                    Text(
+                                      result_shown[i]["complication"]
+                                          .toString(),
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    Text(
+                                      result_shown[i]["severity_str"]
+                                          .toString(),
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    Text(
+                                      _texts["your_risk"] +
+                                          " " +
+                                          result_shown[i]["risk_percent"]
+                                              .toString() +
+                                          "%",
+                                      style: TextStyle(
+                                          color: Colors.black, fontSize: 16),
+                                    )
+                                  ])
+
+                                //     ExpansionPanelList(
+                                //         expansionCallback:
+                                //             (panelIndex, isExpanded) {
+                                //           active[i] = !active[i];
+                                //           setState(() {});
+                                //         },
+                                //         children: <ExpansionPanel>[
+                                //           ExpansionPanel(
+                                //               headerBuilder:
+                                //                   (context, isExpanded) {
+                                //                 return Row(children: [
+                                //                   Padding(
+                                //                     padding: EdgeInsets.fromLTRB(
+                                //                         30, 20, 15, 20),
+                                //                     child: Text(
+                                //                         result_shown[i][
+                                //                                 "complication"] //ici
+                                //                             .toString(),
+                                //                         style: TextStyle(
+                                //                             color: Colors.black,
+                                //                             fontSize: 16),
+                                //                         textAlign:
+                                //                             TextAlign.start),
+                                //                   ),
+                                //                   Text(
+                                //                       result_shown[i]
+                                //                               ["severity_str"]
+                                //                           .toString(),
+                                //                       style: TextStyle(
+                                //                           color: color.risk_color(
+                                //                               result_shown[i][
+                                //                                       "severity_str"]
+                                //                                   .toString()),
+                                //                           fontSize: 15),
+                                //                       textAlign: TextAlign.center)
+                                //                 ]);
+                                //               },
+                                //               body: Wrap(
+                                //                 alignment:
+                                //                     WrapAlignment.spaceBetween,
+                                //                 spacing: 7,
+                                //                 children: [
+                                //                   Padding(
+                                //                       padding: EdgeInsets.all(20),
+                                //                       child: Text(
+                                //                         _texts["your_risk"] +
+                                //                             " " +
+                                //                             result_shown[i][
+                                //                                     "risk_percent"]
+                                //                                 .toString() +
+                                //                             "%",
+                                //                         style: TextStyle(
+                                //                             color: Colors.black,
+                                //                             fontSize: 16),
+                                //                       )),
+                                //                   Padding(
+                                //                     padding: EdgeInsets.all(20),
+                                //                     child: TextButton(
+                                //                       style: TextButton.styleFrom(
+                                //                         primary: Colors.blue,
+                                //                         textStyle: TextStyle(
+                                //                             color: Colors.black,
+                                //                             fontSize: 16),
+                                //                       ),
+                                //                       onPressed: () {
+                                //                         _launch_URL(
+                                //                             result_shown[i]
+                                //                                 ["complication"]);
+                                //                       },
+                                //                       child: Text(
+                                //                           _texts["read_more"]),
+                                //                     ),
+                                //                   )
+                                //                 ],
+                                //               ),
+                                //               isExpanded: active[i],
+                                //               canTapOnHeader: true)
+                                //         ])
+                              ])
+                            : Text("Choose a date to see results from")
+//OG HER
+                      ])
+                    : Loading()
+              ]))
+        ])));
+  }
+}
+
+/*
+Row(children: [
+                                                  Text(
+                                                    result_shown[i]
+                                                            ["complication"]
+                                                        .toString(),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                  Text(
+                                                    result_shown[i]
+                                                            ["severity_str"]
+                                                        .toString(),
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                  Text(
+                                                    _texts["your_risk"] +
+                                                        " " +
+                                                        result_shown[i]
+                                                                ["risk_percent"]
+                                                            .toString() +
+                                                        "%",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 16),
+                                                  )
+                                                ]);*/
+                                                /*
+                                                floatingActionButton: TextButton(
         style: TextButton.styleFrom(
-          //padding: const EdgeInsets.all(16.0),
           primary: Colors.blue,
           textStyle: const TextStyle(fontSize: 20),
         ),
@@ -76,6 +292,42 @@ class _MyPageState extends State<MyPage> {
         },
         child: Text("Main Screen"),
       ),
-    );
-  }
-}
+                                                */
+
+                                                /*
+                                                _results.length > 0 && _texts.length > 0
+          ? Column(children: [
+              Padding(
+                  padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
+                  child: Column(children: [
+                    Padding(
+                        padding: EdgeInsets.all(25),
+                        child: Text(
+                          _texts["my_page"],
+                          style: TextStyle(color: Colors.black, fontSize: 30),
+                        )),
+                    Row(children: [
+                      _results.length > 0
+                          ? Column(children: [
+                              for (var i = 0; i < _results.length; i++)
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                    primary: Colors.black,
+                                    textStyle: TextStyle(fontSize: 20),
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      result_shown =
+                                          _results[i].values.toList()[0];
+                                    });
+                                    print(_results[i]
+                                        .values
+                                        .toList()[0]
+                                        .toString());
+                                  },
+                                  child: Text(
+                                      _results[i].keys.toList()[0].toString()),
+                                ),
+                            ])
+                          : Loading(),
+                                                */
