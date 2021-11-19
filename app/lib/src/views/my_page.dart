@@ -133,10 +133,10 @@ class _MyPageState extends State<MyPage> {
                                     onPressed: () {
                                       setState(() {
                                         result_shown =
-                                            _results[i].values.toList()[0];
+                                            _results.reversed.toList()[i].values.toList()[0];
                                       });
                                     },
-                                    child: Text(_results[i]
+                                    child: Text(_results.reversed.toList()[i]
                                         .keys
                                         .toList()[0]
                                         .toString()),
@@ -146,7 +146,7 @@ class _MyPageState extends State<MyPage> {
                         ),
 //MELLOM HER
                         Expanded(
-                                  flex: 2,
+                                  flex: 3,
                                   child: Padding(
                                       padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
                                       child:
