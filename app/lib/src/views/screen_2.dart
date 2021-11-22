@@ -8,10 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'Style/colors.dart' as color;
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:app/src/views/factors.dart';
+import 'results.dart';
+import 'package:app/src/networking/constants/links.dart' as link;
 
 class Screen2 extends StatefulWidget {
   @override
@@ -34,6 +37,19 @@ class _Screen2State extends State<Screen2> {
     get_texts();
   }
 
+  _launch_URL(String complication) async {
+    complication = complication.replaceAll(' ', '');
+    complication = complication.replaceAll('-', '');
+
+    var url = link.get_url(complication);
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService authService = context.watch<AuthService>();
@@ -41,22 +57,66 @@ class _Screen2State extends State<Screen2> {
         appBar: topBar(context, authService),
         body: Column(children: [
           Padding(
+              padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text(_texts.length > 0 ? _texts["intro_complication"] : " ",
+                    style: const TextStyle(color: Colors.black, fontSize: 20))
+              ])),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  for (var i = 0;
+                      i < _texts["complication_list_1"].split(";").length;
+                      i++)
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.blue,
+                        textStyle: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      onPressed: () {
+                        _launch_URL(
+                            _texts["complication_list_1"].split(";")[i]);
+                      },
+                      child: Text(_texts["complication_list_1"].split(";")[i]),
+                    )
+                ],
+              ),
+              Column(
+                children: [
+                  for (var i = 0;
+                      i < _texts["complication_list_2"].split(";").length;
+                      i++)
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.blue,
+                        textStyle: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      onPressed: () {
+                        _launch_URL(
+                            _texts["complication_list_2"].split(";")[i]);
+                      },
+                      child: Text(_texts["complication_list_2"].split(";")[i]),
+                    ),
+                ],
+              )
+            ],
+          ),
+          Padding(
             padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(_texts.length > 0 ? _texts["intro_complication"] : " ",
-                    style: const TextStyle(color: Colors.black, fontSize: 20)),
-                Text(_texts.length > 0 ? _texts["complication_list_1"] : " ",
-                    style: const TextStyle(color: Colors.black, fontSize: 20)),
-                Text(_texts.length > 0 ? _texts["complication_list_2"] : " ",
-                    style: const TextStyle(color: Colors.black, fontSize: 20)),
                 Text(_texts.length > 0 ? _texts["note_that"] : " ",
                     style: const TextStyle(color: Colors.black, fontSize: 20)),
-                Text(_texts.length > 0 ? _texts["warning_text_page_2"] : " ",
-                    style: const TextStyle(color: Colors.black, fontSize: 20)),
+                Text(
+                  _texts.length > 0 ? _texts["warning_text_page_2"] : " ",
+                  style: const TextStyle(color: Colors.black, fontSize: 15),
+                  textAlign: TextAlign.center,
+                ),
                 Text(_texts.length > 0 ? _texts["explanation_text"] : " ",
-                    style: const TextStyle(color: Colors.black, fontSize: 20)),
+                    style: const TextStyle(color: Colors.black, fontSize: 15)),
               ],
             ),
           )

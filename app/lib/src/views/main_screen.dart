@@ -54,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: language_button(context, "fr")),
               ],
             )),
+          
         Padding(
           padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
           child: Row(
@@ -88,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
                       )))
             ],
           ),
-        )
+        ),
       ]),
       floatingActionButton: TextButton(
         style: TextButton.styleFrom(

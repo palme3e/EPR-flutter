@@ -177,7 +177,8 @@ class _ResultsState extends State<Results> {
                                                 setState(() {});
                                               },
                                               children: <ExpansionPanel>[
-                                                panelExpansion(active, _result, _texts, i, _launch_URL)
+                                                panelExpansion(active, _result,
+                                                    _texts, i, _launch_URL)
                                               ])
                                       ]))),
                               Expanded(
