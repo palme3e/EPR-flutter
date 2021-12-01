@@ -54,25 +54,36 @@ class _MainScreenState extends State<MainScreen> {
                     child: language_button(context, "fr")),
               ],
             )),
-          
         Padding(
           padding: EdgeInsets.fromLTRB(75, 100, 75, 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(_texts.length > 0 ? _texts["leading_question"] : " ",
-                  style: const TextStyle(color: Colors.black, fontSize: 20)),
               Flexible(
                   flex: 8,
                   fit: FlexFit.loose,
                   child: Align(
                       alignment: Alignment.topLeft,
-                      child: Text(
-                        _texts.length > 0 ? _texts["paragraph_page1"] : " ",
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 20),
-                        softWrap: true,
-                      ))),
+                      child: Column(children: [
+                        Text(
+                            _texts.length > 0
+                                ? _texts["leading_question"]
+                                : " ",
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(47, 10, 0, 0),
+                            child: Text(
+                              _texts.length > 0
+                                  ? _texts["paragraph_page1"]
+                                  : " ",
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 20),
+                              softWrap: true,
+                            ))
+                      ]))),
               Spacer(
                 flex: 1,
               ),
