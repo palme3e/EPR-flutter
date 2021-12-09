@@ -1,5 +1,4 @@
 import 'package:app/src/views/components/result_expansion.dart';
-
 import '../networking/requests.dart' as request;
 import 'factors.dart' as result;
 import 'package:app/src/auth/auth_service.dart';
@@ -7,13 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'Style/colors.dart' as color;
-import 'package:app/src/views/app_bar.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:app/src/views/components/app_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:app/src/networking/constants/links.dart' as link;
-import 'package:app/src/views/components/bullet_point_factor.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Results extends StatefulWidget {
@@ -86,20 +83,6 @@ class _ResultsState extends State<Results> {
         .doc(resultID)
         .set({resultID: result}).then((_) {});
   }
-
-  // List<Item> generate_items(List<Map> complication) {
-  //   var item_list = [];
-  //   for (Map comp in complication) {
-  //     item_list.add(Item(
-  //         expandedHeader: comp["complication"].toString() +
-  //             " " +
-  //             comp["severity_str"].toString(),
-  //         expandedValue: "Your risk of getting this complication is " +
-  //             comp["risk_percent"].toString() +
-  //             "%"));
-  //   }
-  //   return item_list;
-  // }
 
   List<bool> active = [
     false,
@@ -177,7 +160,7 @@ class _ResultsState extends State<Results> {
                                                 setState(() {});
                                               },
                                               children: <ExpansionPanel>[
-                                                panelExpansion(active, _result,
+                                                result_expansion(active, _result,
                                                     _texts, i, _launch_URL)
                                               ])
                                       ]))),

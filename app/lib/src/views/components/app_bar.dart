@@ -1,10 +1,7 @@
-import 'dart:html';
-
 import 'package:app/src/views/my_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/src/auth/auth_service.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'package:provider/src/provider.dart';
 import 'package:app/src/views/main_screen.dart';
 
 AppBar topBar(BuildContext context, AuthService authService) => AppBar(

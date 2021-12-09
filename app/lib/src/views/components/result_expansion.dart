@@ -2,7 +2,7 @@ import 'package:app/src/views/Style/colors.dart' as color;
 import 'package:app/src/views/components/bullet_point_factor.dart';
 import 'package:flutter/material.dart';
 
-ExpansionPanel panelExpansion(active, result_shown, _texts, i, _launch_URL) =>
+ExpansionPanel result_expansion(active, result_shown, _texts, i, _launch_URL) =>
   ExpansionPanel(
       headerBuilder:
           (context, isExpanded) {

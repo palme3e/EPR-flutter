@@ -1,7 +1,7 @@
 import 'package:app/src/auth/auth_service.dart';
-import 'package:app/src/views/app_bar.dart';
+import 'package:app/src/views/components/app_bar.dart';
 import 'package:app/src/views/components/result_expansion.dart';
-import 'package:app/src/views/loading.dart';
+import 'package:app/src/views/components/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,6 @@ class _MyPageState extends State<MyPage> {
         .get()
         .then((query_snapshot) {
       for (var doc in query_snapshot.docs) {
-        //print(doc.data().toString());
         results.add(doc.data());
       }
     });
@@ -170,7 +169,7 @@ class _MyPageState extends State<MyPage> {
                                                 setState(() {});
                                               },
                                               children: <ExpansionPanel>[
-                                                panelExpansion(active, result_shown, _texts, i, _launch_URL)
+                                                result_expansion(active, result_shown, _texts, i, _launch_URL)
                                               ])
                               ])
                             : Text("Choose a date to see results from.", style: TextStyle(fontSize: 15))

@@ -1,6 +1,6 @@
 import 'package:app/src/app.dart';
-import 'package:app/src/views/error_screen.dart';
-import 'package:app/src/views/loading.dart';
+import 'package:app/src/views/components/error_screen.dart';
+import 'package:app/src/views/components/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 

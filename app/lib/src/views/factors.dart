@@ -1,6 +1,4 @@
-import 'dart:html';
-import 'dart:io';
-import 'package:app/src/views/loading.dart';
+import 'package:app/src/views/components/loading.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:app/src/views/results.dart';
 import 'package:flutter/services.dart';
@@ -10,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import '../auth/auth_service.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'Style/colors.dart' as color;
-import 'package:app/src/views/app_bar.dart';
+import 'package:app/src/views/components/app_bar.dart';
 import 'package:app/src/views/components/lang_buttons.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 

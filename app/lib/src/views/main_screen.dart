@@ -1,14 +1,10 @@
 import 'package:app/src/auth/auth_service.dart';
-import 'package:app/src/networking/constants/endpoints.dart';
 import 'package:app/src/networking/requests.dart';
-import 'package:app/src/views/app_bar.dart';
+import 'package:app/src/views/components/app_bar.dart';
 import 'package:app/src/views/screen_2.dart';
-import 'package:app/src/views/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
-import 'Style/colors.dart' as color;
 import 'package:app/src/views/components/lang_buttons.dart';
 
 class MainScreen extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:app/src/auth/auth_service.dart';
-import 'package:app/src/views/loading.dart';
-import 'package:app/src/views/login.dart';
+import 'package:app/src/views/components/loading.dart';
+import 'package:app/src/views/components/login.dart';
 import 'package:app/src/views/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class Navigation extends StatelessWidget {
               authService.status == Status.Login)
             MaterialPage(
               key: ValueKey<String>('public'),
-              child: MainScreen(), //change later
+              child: MainScreen(), 
 
             ),
           if (authService.status == Status.Fail ||

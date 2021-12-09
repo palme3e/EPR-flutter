@@ -1,19 +1,7 @@
-import 'package:app/src/auth/auth_service.dart';
-import 'package:app/src/views/loading.dart';
+import 'package:app/src/views/components/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:app/src/views/app_bar.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:app/src/views/components/lang_buttons.dart';
-import 'package:app/src/networking/constants/links.dart' as link;
-import 'package:app/src/networking/constants/affecting_factors.dart'
-    as affecting;
-import 'package:url_launcher/url_launcher.dart';
-
-//var factors = affecting.get_affecting_factors(comps)
+import 'package:app/src/networking/constants/affecting_factors.dart' as affecting;
 
 Column bullet_list(comps) =>
     Column(mainAxisAlignment: MainAxisAlignment.start, children: [
